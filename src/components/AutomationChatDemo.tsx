@@ -29,7 +29,7 @@ const PHONE_H = 640;
 const usePhoneScale = () => {
   const compute = () => {
     if (typeof window === 'undefined' || window.innerWidth < 1024) return 1;
-    return Math.min(1, Math.max(0.55, (window.innerHeight - 255) / PHONE_H));
+    return Math.min(1, Math.max(0.6, (window.innerHeight - 215) / PHONE_H));
   };
   const [scale, setScale] = useState(compute);
   useEffect(() => {
