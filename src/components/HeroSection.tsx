@@ -9,12 +9,12 @@ interface HeroSectionProps {
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenInquiry, onOpenSolutions }) => {
   return (
-    <main className="relative z-10 flex w-full flex-1 items-center px-4 py-10 sm:px-8 sm:py-14 md:px-12 lg:px-16 lg:py-16 xl:px-20">
-      <div className="mx-auto grid w-full max-w-7xl items-center gap-16 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
+    <main className="relative z-10 flex w-full flex-1 items-center px-4 py-8 sm:px-8 sm:py-12 md:px-12 lg:px-16 lg:py-6 xl:px-20">
+      <div className="mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
         {/* Copy */}
         <div className="text-start">
-          <h1 className="font-heading font-bold text-[clamp(2.4rem,5.2vw,4.6rem)] leading-[1.25] text-indigo-950">
-            <span className="hero-rise block text-indigo-950" style={{ animationDelay: '80ms' }}>
+          <h1 className="font-heading font-bold text-[clamp(2.3rem,min(5.2vw,9.5svh),4.6rem)] leading-[1.22] text-indigo-950">
+            <span className="hero-rise block text-balance text-indigo-950" style={{ animationDelay: '80ms' }}>
               خلّي الشغل المتكرر يمشي تلقائيًا.
             </span>
             <span className="hero-rise block text-indigo-600" style={{ animationDelay: '320ms' }}>
@@ -23,20 +23,20 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenInquiry, onOpenS
           </h1>
 
           <p
-            className="hero-rise mt-7 max-w-xl text-lg leading-9 text-slate-600 sm:text-xl"
+            className="hero-rise mt-5 max-w-xl text-base leading-8 text-slate-600 sm:text-lg lg:mt-6"
             style={{ animationDelay: '560ms' }}
           >
             نبني أنظمة ذكية تردّ على العملاء، تتابع الفرص، وتنظّم المواعيد — لتخفيف المهام اليدوية ومساعدة فريقك يركّز على نمو شركتك.
           </p>
 
           <div
-            className="hero-rise mt-9 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:gap-6"
+            className="hero-rise mt-7 flex flex-col items-stretch lg:mt-8 gap-4 sm:flex-row sm:items-center sm:gap-6"
             style={{ animationDelay: '720ms' }}
           >
             <button
               type="button"
               onClick={onOpenInquiry}
-              className="group flex cursor-pointer items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-[#FF5722] via-[#F4511E] to-[#E64A19] px-8 py-4 text-base font-semibold text-white shadow-lg shadow-orange-500/25 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-orange-500/40 focus:outline-none focus-visible:ring-4 focus-visible:ring-orange-400/50 active:translate-y-0"
+              className="group flex cursor-pointer items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-[#FF5722] via-[#F4511E] to-[#E64A19] px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-orange-500/25 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-orange-500/40 focus:outline-none focus-visible:ring-4 focus-visible:ring-orange-400/50 active:translate-y-0"
             >
               <span>احكي لنا عن شغلك</span>
               <ArrowLeft className="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-1" />
@@ -56,7 +56,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenInquiry, onOpenS
         {/* Live product moment */}
         <div className="hero-rise pb-6 lg:pb-0" style={{ animationDelay: '480ms' }}>
           <AutomationChatDemo />
-          <p className="mt-8 text-center text-xs text-slate-400">
+          <p className="mt-5 text-center text-xs text-slate-400">
             مثال توضيحي لمحادثة بعد الأتمتة
           </p>
         </div>

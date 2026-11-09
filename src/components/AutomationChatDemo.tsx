@@ -22,7 +22,26 @@ const MESSAGES: Message[] = [
   { from: 'agent', text: 'حجزتلك الموعد بكرا الساعة ٤:٣٠ ✓ وبذكّرك قبلها بساعتين على واتساب.', time: '٢:١٥' },
 ];
 
+const PHONE_W = 290;
+const PHONE_H = 640;
+
+/** On wide screens, shrink the phone so the whole hero fits in the viewport height. */
+const usePhoneScale = () => {
+  const compute = () => {
+    if (typeof window === 'undefined' || window.innerWidth < 1024) return 1;
+    return Math.min(1, Math.max(0.55, (window.innerHeight - 255) / PHONE_H));
+  };
+  const [scale, setScale] = useState(compute);
+  useEffect(() => {
+    const onResize = () => setScale(compute());
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+  return scale;
+};
+
 export const AutomationChatDemo: React.FC = () => {
+  const scale = usePhoneScale();
   const [visible, setVisible] = useState(0);
   const [typing, setTyping] = useState(false);
   const [booked, setBooked] = useState(false);
@@ -69,7 +88,20 @@ export const AutomationChatDemo: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative mx-auto w-[290px]">
+    <div
+      className="relative mx-auto"
+      style={{ width: PHONE_W * scale, height: PHONE_H * scale }}
+    >
+    <div
+      className="absolute left-1/2 top-0"
+      style={{
+        width: PHONE_W,
+        height: PHONE_H,
+        marginLeft: -PHONE_W / 2,
+        transform: `scale(${scale})`,
+        transformOrigin: 'top center',
+      }}
+    >
       {/* Single soft light source behind the device */}
       <div
         className="pointer-events-none absolute -inset-x-16 -inset-y-10 -z-10 rounded-full bg-indigo-500/25 blur-3xl"
@@ -215,6 +247,7 @@ export const AutomationChatDemo: React.FC = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };
