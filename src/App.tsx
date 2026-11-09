@@ -7,7 +7,6 @@ import React, { useState } from 'react';
 import { ArrowLeft, ArrowUpRight, Zap } from 'lucide-react';
 import { Navbar } from './components/Navbar';
 import { Headline } from './components/Headline';
-import { RotatingBadge } from './components/RotatingBadge';
 import { InquiryModal } from './components/InquiryModal';
 import { SolutionsDrawer } from './components/SolutionsDrawer';
 import { InfoModal } from './components/InfoModals';
@@ -51,7 +50,14 @@ export default function App() {
 
       {/* 1. Header & Navigation */}
       <Navbar
-        onOpenSolutions={() => setIsSolutionsOpen(true)}
+        onOpenSolutions={() => {
+          const el = document.getElementById('how-it-works-section');
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+          } else {
+            setIsSolutionsOpen(true);
+          }
+        }}
         onOpenHowItWorks={() => {
           const el = document.getElementById('how-it-works-section');
           if (el) {
@@ -149,11 +155,6 @@ export default function App() {
                 وكلاء الذكاء الاصطناعي
               </button>
             </div>
-          </div>
-
-          {/* Rotating Circular Brand Seal (Inspired by the reference image's signature stamp) */}
-          <div className="flex items-center gap-4">
-            <RotatingBadge onClick={() => setIsSolutionsOpen(true)} />
           </div>
         </div>
       </div>
