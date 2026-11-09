@@ -1,0 +1,6 @@
+{
+  "name": "TAMAM | تَمام — أتمتة ذكية للشركات",
+  "description": "حلول أتمتة وذكاء اصطناعي للشركات: ردود العملاء، متابعة الفرص، تنظيم المواعيد، وبناء وكلاء ذكاء اصطناعي مخصصين.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

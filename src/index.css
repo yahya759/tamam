@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Tajawal", "Noto Sans Arabic", "Geeza Pro", system-ui, sans-serif;
+  --font-heading: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Tajawal", "Noto Sans Arabic", "Geeza Pro", system-ui, sans-serif;
+}
+
+@layer base {
+  :root {
+    --brand-blue: #3B82F6;
+    --brand-indigo: #4F46E5;
+    --brand-warm: #FF5722;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, .font-heading {
+    font-family: var(--font-heading);
+  }
+}
+
+/* Background vertical editorial grid guidelines */
+.bg-vertical-grid {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.015) 1px, transparent 1px);
+  background-size: calc(100% / 8) 100%;
+}
+
+@media (min-width: 1024px) {
+  .bg-vertical-grid {
+    background-size: calc(100% / 12) 100%;
+  }
+}
+
+/* Rotating stamp animation */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 24s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-spin-slow {
+    animation: none;
+  }
+}
