@@ -14,10 +14,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenInquiry, onOpenS
         {/* Copy */}
         <div className="text-start">
           <h1 className="font-heading font-bold text-[clamp(2.4rem,5.2vw,4.6rem)] leading-[1.25] text-indigo-950">
-            <span className="hero-rise block text-indigo-950/45" style={{ animationDelay: '80ms' }}>
+            <span className="hero-rise block text-indigo-950" style={{ animationDelay: '80ms' }}>
               خلّي الشغل المتكرر يمشي تلقائيًا.
             </span>
-            <span className="hero-rise block" style={{ animationDelay: '320ms' }}>
+            <span className="hero-rise block text-indigo-600" style={{ animationDelay: '320ms' }}>
               ووقتك؟ تَمام.
             </span>
           </h1>
@@ -56,7 +56,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenInquiry, onOpenS
         {/* Live product moment */}
         <div className="hero-rise pb-6 lg:pb-0" style={{ animationDelay: '480ms' }}>
           <AutomationChatDemo />
-          <p className="mt-9 text-center text-xs text-slate-400 lg:text-start">
+          <p className="mt-8 text-center text-xs text-slate-400">
             مثال توضيحي لمحادثة بعد الأتمتة
           </p>
         </div>
