@@ -4,9 +4,8 @@
  */
 
 import React, { useState } from 'react';
-import { ArrowLeft, ArrowUpRight, Zap } from 'lucide-react';
 import { Navbar } from './components/Navbar';
-import { Headline } from './components/Headline';
+import { HeroSection } from './components/HeroSection';
 import { InquiryModal } from './components/InquiryModal';
 import { SolutionsDrawer } from './components/SolutionsDrawer';
 import { InfoModal } from './components/InfoModals';
@@ -77,44 +76,11 @@ export default function App() {
         onOpenInquiry={() => setIsInquiryOpen(true)}
       />
 
-      {/* 2. Main Hero Center Section */}
-      <main className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 py-6 sm:py-8 lg:py-10 w-full text-center">
-        {/* Soft diffused lavender aura behind the center of the Hero */}
-        <div
-          className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[580px] md:w-[760px] lg:w-[920px] h-[280px] sm:h-[420px] md:h-[500px] rounded-full bg-gradient-to-tr from-violet-200/25 via-indigo-100/35 to-purple-200/20 blur-3xl -z-10"
-          aria-hidden="true"
-        />
-
-        <Headline />
-
-        {/* Hero Description */}
-        <p className="mt-5 sm:mt-6 text-base sm:text-lg md:text-xl text-slate-600 max-w-3xl lg:max-w-4xl mx-auto leading-relaxed font-normal">
-          نبني أنظمة ذكية تردّ على العملاء، تتابع الفرص، وتنظّم المواعيد — لتخفيف المهام اليدوية ومساعدة فريقك يركّز على نمو شركتك.
-        </p>
-
-        {/* Action CTAs (Primary Orange Button + Secondary Clean Link) */}
-        <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full">
-          {/* Primary CTA (Warm orange button inspired by the reference image) */}
-          <button
-            type="button"
-            onClick={() => setIsInquiryOpen(true)}
-            className="w-full sm:w-auto px-8 py-3.5 sm:py-4 text-base font-semibold text-white bg-gradient-to-r from-[#FF5722] via-[#F4511E] to-[#E64A19] hover:from-[#F4511E] hover:to-[#D84315] rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-orange-400/50 flex items-center justify-center gap-2.5 group"
-          >
-            <span>احكي لنا عن شغلك</span>
-            <ArrowLeft className="w-4 h-4 transition-transform duration-200 group-hover:-translate-x-1" />
-          </button>
-
-          {/* Secondary Link */}
-          <button
-            type="button"
-            onClick={() => setIsSolutionsOpen(true)}
-            className="text-sm sm:text-base font-medium text-slate-700 hover:text-slate-950 underline underline-offset-8 decoration-slate-300 hover:decoration-slate-900 transition-colors py-2 px-3 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-lg flex items-center gap-1.5"
-          >
-            <span>اكتشف حلول TAMAM</span>
-            <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-slate-900" />
-          </button>
-        </div>
-      </main>
+      {/* 2. Hero */}
+      <HeroSection
+        onOpenInquiry={() => setIsInquiryOpen(true)}
+        onOpenSolutions={() => setIsSolutionsOpen(true)}
+      />
 
       {/* 3. Bottom Solutions Ribbon & Circular Badge (Completing the Hero Section) */}
       <div className="relative z-10 w-full px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 pb-8 pt-2">
