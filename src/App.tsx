@@ -6,7 +6,7 @@
 import React, { useState } from 'react';
 import { ArrowLeft, ArrowUpRight, Zap } from 'lucide-react';
 import { Navbar } from './components/Navbar';
-import { HeadlineSwitch } from './components/HeadlineSwitch';
+import { Headline } from './components/Headline';
 import { RotatingBadge } from './components/RotatingBadge';
 import { InquiryModal } from './components/InquiryModal';
 import { SolutionsDrawer } from './components/SolutionsDrawer';
@@ -16,21 +16,13 @@ import { HowItWorksSection } from './components/HowItWorksSection';
 import { PackagesSection } from './components/PackagesSection';
 import { ClosingCtaSection } from './components/ClosingCtaSection';
 import { DarkFooter } from './components/DarkFooter';
-import { getAutomationImpact } from './utils/automation-state';
 
 export default function App() {
-  const [isAutomated, setIsAutomated] = useState(true);
   const [isInquiryOpen, setIsInquiryOpen] = useState(false);
   const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
   const [infoModalType, setInfoModalType] = useState<'how-it-works' | 'packages' | null>(null);
   const [preselectedSolution, setPreselectedSolution] = useState<string | null>(null);
   const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
-
-  const impact = getAutomationImpact(isAutomated);
-
-  const handleToggleSwitch = () => {
-    setIsAutomated((prev) => !prev);
-  };
 
   const handleOpenInquiryWithSolution = (solutionId: string) => {
     setPreselectedSolution(solutionId);
@@ -87,11 +79,7 @@ export default function App() {
           aria-hidden="true"
         />
 
-        {/* Embedded Headline & Interactive Automation Switch */}
-        <HeadlineSwitch
-          isAutomated={isAutomated}
-          onToggle={handleToggleSwitch}
-        />
+        <Headline />
 
         {/* Hero Description */}
         <p className="mt-5 sm:mt-6 text-base sm:text-lg md:text-xl text-slate-600 max-w-3xl lg:max-w-4xl mx-auto leading-relaxed font-normal">

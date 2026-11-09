@@ -46,10 +46,6 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Centered Brand Logo */}
         <div className="flex items-center gap-2.5">
-          <div className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-blue-500 text-white shadow-md shadow-indigo-500/20">
-            <span className="font-heading font-black text-lg tracking-tight select-none">ت</span>
-            <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-blue-400 rounded-full border-2 border-white animate-pulse" />
-          </div>
           <div className="flex flex-col text-right">
             <div className="flex items-center gap-1.5">
               <span className="font-heading text-xl font-bold tracking-tight text-slate-950">TAMAM</span>
