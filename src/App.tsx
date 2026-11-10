@@ -3,7 +3,8 @@
  * Modern AI & Automation Brand for Businesses
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { getNiche } from './niches';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { WorkSection } from './components/WorkSection';
@@ -18,7 +19,14 @@ import { PackagesSection } from './components/PackagesSection';
 import { ClosingCtaSection } from './components/ClosingCtaSection';
 import { DarkFooter } from './components/DarkFooter';
 
+const RIBBON_SOLUTIONS = ['customer-support', 'lead-followup', 'appointment-reminders', 'custom-agent'] as const;
+
 export default function App() {
+  const niche = getNiche();
+  useEffect(() => {
+    document.title = niche.meta.title;
+    document.querySelector('meta[name="description"]')?.setAttribute('content', niche.meta.description);
+  }, [niche]);
   const [isInquiryOpen, setIsInquiryOpen] = useState(false);
   const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
@@ -93,37 +101,20 @@ export default function App() {
           <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 text-xs sm:text-sm text-slate-500 font-medium">
             <span className="text-slate-400 font-normal">حلول تَمام الأساسية:</span>
             <div className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 text-slate-700">
-              <button
-                type="button"
-                onClick={() => handleOpenInquiryWithSolution('customer-support')}
-                className="hover:text-indigo-600 transition-colors cursor-pointer"
-              >
-                ردود العملاء
-              </button>
-              <span aria-hidden="true" className="text-slate-300">·</span>
-              <button
-                type="button"
-                onClick={() => handleOpenInquiryWithSolution('lead-followup')}
-                className="hover:text-indigo-600 transition-colors cursor-pointer"
-              >
-                المتابعة
-              </button>
-              <span aria-hidden="true" className="text-slate-300">·</span>
-              <button
-                type="button"
-                onClick={() => handleOpenInquiryWithSolution('appointment-reminders')}
-                className="hover:text-indigo-600 transition-colors cursor-pointer"
-              >
-                المواعيد
-              </button>
-              <span aria-hidden="true" className="text-slate-300">·</span>
-              <button
-                type="button"
-                onClick={() => handleOpenInquiryWithSolution('custom-agent')}
-                className="hover:text-indigo-600 transition-colors cursor-pointer"
-              >
-                وكلاء الذكاء الاصطناعي
-              </button>
+              {RIBBON_SOLUTIONS.map((solutionId, i) => (
+                <React.Fragment key={solutionId}>
+                  {i > 0 && (
+                    <span aria-hidden="true" className="text-slate-300">·</span>
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => handleOpenInquiryWithSolution(solutionId)}
+                    className="hover:text-indigo-600 transition-colors cursor-pointer"
+                  >
+                    {niche.ribbon[i]}
+                  </button>
+                </React.Fragment>
+              ))}
             </div>
           </div>
         </div>

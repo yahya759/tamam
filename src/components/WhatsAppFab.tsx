@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { WhatsAppIcon } from './WhatsAppIcon';
-import { WA_DEFAULT_MESSAGE, waLink } from '../config';
+import { waLink } from '../config';
+import { getNiche } from '../niches';
 import { trackEvent } from '../lib/analytics';
 
 /** Floating WhatsApp button. Appears after the visitor scrolls past the hero. */
@@ -16,7 +17,7 @@ export const WhatsAppFab: React.FC = () => {
 
   return (
     <a
-      href={waLink(WA_DEFAULT_MESSAGE)}
+      href={waLink(getNiche().waMessage)}
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => trackEvent('whatsapp_click', 'contact')}

@@ -1,12 +1,13 @@
 import React, { Suspense, lazy } from 'react';
 import App from './App';
-import type { DemoId } from './demos/utils';
 
-const DemoSite = lazy(() => import('./demos/DemoSite').then((m) => ({ default: m.DemoSite })));
 const DemosHub = lazy(() => import('./demos/DemosHub').then((m) => ({ default: m.DemosHub })));
 
-const DEMO_PATHS: DemoId[] = ['salon', 'restaurant', 'dental'];
-
+/**
+ * "/"            -> main TAMAM site
+ * "/salon" ...   -> the same site with niche copy (see src/niches.ts)
+ * "/demos"       -> private page with copyable links for every niche
+ */
 export const Root: React.FC = () => {
   const path = window.location.pathname.replace(/\/+$/, '').toLowerCase();
 
@@ -17,15 +18,5 @@ export const Root: React.FC = () => {
       </Suspense>
     );
   }
-
-  const id = DEMO_PATHS.find((p) => path === `/${p}`);
-  if (id) {
-    return (
-      <Suspense fallback={null}>
-        <DemoSite id={id} />
-      </Suspense>
-    );
-  }
-
   return <App />;
 };

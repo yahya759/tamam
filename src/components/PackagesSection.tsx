@@ -2,6 +2,7 @@ import React from 'react';
 import { Database, CalendarClock, Cpu, Check, ArrowLeft, HelpCircle } from 'lucide-react';
 import { TAMAM_PACKAGES } from '../utils/automation-state';
 import { ScrollReveal } from './ScrollReveal';
+import { getNiche } from '../niches';
 
 interface PackagesSectionProps {
   onSelectPackage: (packageName: string) => void;
@@ -12,6 +13,7 @@ export const PackagesSection: React.FC<PackagesSectionProps> = ({
   onSelectPackage,
   onOpenConsultation,
 }) => {
+  const niche = getNiche();
   const getPackageVisual = (id: string) => {
     switch (id) {
       case 'crm-inquiries':
@@ -59,7 +61,8 @@ export const PackagesSection: React.FC<PackagesSectionProps> = ({
 
       {/* 3 Packages Cards with Staggered Scroll & Hover Animations */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 w-full max-w-7xl mx-auto">
-        {TAMAM_PACKAGES.map((pkg, idx) => {
+        {TAMAM_PACKAGES.map((basePkg, idx) => {
+          const pkg = { ...basePkg, ...(niche.packages[basePkg.id] ?? {}) };
           const visual = getPackageVisual(pkg.id);
           return (
             <ScrollReveal key={pkg.id} delay={idx * 140} className="h-full">

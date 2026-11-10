@@ -2,12 +2,14 @@ import React from 'react';
 import { MessagesSquare, UserMinus, CalendarClock, Sparkles } from 'lucide-react';
 import { PAIN_POINTS } from '../utils/automation-state';
 import { ScrollReveal } from './ScrollReveal';
+import { getNiche } from '../niches';
 
 interface PainPointsSectionProps {
   onLearnMore?: () => void;
 }
 
 export const PainPointsSection: React.FC<PainPointsSectionProps> = ({ onLearnMore }) => {
+  const niche = getNiche();
   const getCardVisual = (id: string) => {
     switch (id) {
       case 'endless-messages':
@@ -46,20 +48,22 @@ export const PainPointsSection: React.FC<PainPointsSectionProps> = ({ onLearnMor
         <div className="text-center max-w-4xl mx-auto mb-12 sm:mb-16">
           <h2
             id="pain-points-title"
-            className="text-3xl sm:text-4xl lg:text-5xl font-heading font-black text-slate-950 tracking-tight leading-[1.25] mb-4 sm:mb-5"
+            className="text-3xl sm:text-4xl lg:text-5xl font-heading font-black text-slate-950 tracking-tight leading-[1.25] mb-4 sm:mb-5 text-balance"
           >
-            الشغل اللي يتكرر كل يوم… ياخذ من وقتك
+            {niche.pain.title}
           </h2>
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
-            الرد على نفس الأسئلة، متابعة كل عميل يدويًا، وتذكّر المواعيد — تفاصيل صغيرة، بس لما تتراكم تشتّت فريقك وتأخّر شغلك.
+            {niche.pain.sub}
           </p>
         </div>
       </ScrollReveal>
 
       {/* 3 Balanced Cards Grid with Staggered Scroll & Hover Animations */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 w-full max-w-7xl mx-auto">
-        {PAIN_POINTS.map((card, idx) => {
-          const visual = getCardVisual(card.id);
+        {PAIN_POINTS.map((base, idx) => {
+          const o = niche.pain.items[base.id];
+          const card = { ...base, ...(o ? { title: o.title, description: o.description } : {}) };
+          const visual = { ...getCardVisual(base.id), ...(o ? { indicator: o.indicator } : {}) };
           return (
             <ScrollReveal key={card.id} delay={idx * 120} className="h-full">
               <div
@@ -108,7 +112,7 @@ export const PainPointsSection: React.FC<PainPointsSectionProps> = ({ onLearnMor
           <div className="inline-flex items-center gap-2.5 px-5 py-3 rounded-2xl bg-indigo-50/70 border border-indigo-100/90 shadow-xs text-sm sm:text-base text-slate-800 font-medium transition-transform hover:scale-105">
             <Sparkles className="w-4 h-4 text-indigo-600 shrink-0" />
             <span>
-              <strong className="text-indigo-950 font-bold font-heading">TAMAM</strong> تحوّل هذي الخطوات المتكررة إلى أنظمة تمشي مع شغلك.
+              <strong className="text-indigo-950 font-bold font-heading">TAMAM</strong> {niche.pain.closing}
             </span>
           </div>
         </div>

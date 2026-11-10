@@ -1,12 +1,14 @@
 import React from 'react';
 import { ArrowLeft, Sparkles, CheckCircle2 } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
+import { getNiche } from '../niches';
 
 interface ClosingCtaSectionProps {
   onOpenInquiry: () => void;
 }
 
 export const ClosingCtaSection: React.FC<ClosingCtaSectionProps> = ({ onOpenInquiry }) => {
+  const niche = getNiche();
   return (
     <section
       id="closing-cta"
@@ -39,12 +41,12 @@ export const ClosingCtaSection: React.FC<ClosingCtaSectionProps> = ({ onOpenInqu
               id="cta-heading"
               className="text-2xl sm:text-4xl md:text-5xl font-heading font-black text-slate-950 tracking-tight leading-[1.3] sm:leading-[1.25] mb-4 sm:mb-5 max-w-3xl mx-auto"
             >
-              جاهز تخفف الشغل اليدوي عن فريقك؟
+              {niche.closing.title}
             </h2>
 
             {/* Description */}
             <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed mb-8 sm:mb-10 font-normal">
-              قل لنا كيف تمشي المهام عندك اليوم، ونساعدك تكتشف وين ممكن الأتمتة توفر وقت فريقك.
+              {niche.closing.sub}
             </p>
 
             {/* Primary Action Button (Warm Orange CTA matching brand identity) */}

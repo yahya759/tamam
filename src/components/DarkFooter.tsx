@@ -1,7 +1,8 @@
 import React from 'react';
 import { ArrowUpLeft, MessageSquare } from 'lucide-react';
 import { WhatsAppIcon } from './WhatsAppIcon';
-import { WA_DEFAULT_MESSAGE, WHATSAPP_DISPLAY, waLink } from '../config';
+import { WHATSAPP_DISPLAY, waLink } from '../config';
+import { getNiche } from '../niches';
 import { trackEvent } from '../lib/analytics';
 
 interface DarkFooterProps {
@@ -130,7 +131,7 @@ export const DarkFooter: React.FC<DarkFooterProps> = ({
             </button>
 
             <a
-              href={waLink(WA_DEFAULT_MESSAGE)}
+              href={waLink(getNiche().waMessage)}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackEvent('whatsapp_click', 'contact')}

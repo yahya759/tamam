@@ -1,5 +1,6 @@
 import { InquiryFormData, TAMAM_SOLUTIONS } from '../utils/automation-state';
 import { LEAD_WEBHOOK_URL } from '../config';
+import { getNiche } from '../niches';
 
 export function buildLeadMessage(data: InquiryFormData): string {
   const solutions = TAMAM_SOLUTIONS.filter((s) => data.selectedSolutions.includes(s.id))
@@ -7,7 +8,7 @@ export function buildLeadMessage(data: InquiryFormData): string {
     .join('، ');
 
   return [
-    'هلا تَمام، أبغى أكلمكم عن أتمتة شغلي.',
+    getNiche().waMessage,
     '',
     `الاسم: ${data.name.trim()}`,
     `الشركة: ${data.businessName.trim()}`,
@@ -32,7 +33,7 @@ export async function sendLeadToWebhook(data: InquiryFormData): Promise<boolean>
         contact: data.contact.trim(),
         notes: data.notes.trim(),
         solutions: data.selectedSolutions,
-        source: 'tamam-landing',
+        source: `tamam-landing:${getNiche().id}`,
         submittedAt: new Date().toISOString(),
       }),
     });

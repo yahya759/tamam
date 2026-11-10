@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { AutomationChatDemo } from './AutomationChatDemo';
+import { getNiche } from '../niches';
 
 interface HeroSectionProps {
   onOpenInquiry: () => void;
@@ -8,6 +9,7 @@ interface HeroSectionProps {
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenInquiry, onOpenSolutions }) => {
+  const niche = getNiche();
   return (
     <main className="relative z-10 flex w-full flex-1 items-center px-4 py-8 sm:px-8 sm:py-12 md:px-12 lg:px-16 lg:py-6 xl:px-20">
       <div className="mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
@@ -15,7 +17,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenInquiry, onOpenS
         <div className="text-start">
           <h1 className="font-heading font-bold text-[clamp(2.3rem,min(5.2vw,9.5svh),4.6rem)] leading-[1.22] text-indigo-950">
             <span className="hero-rise block text-balance text-indigo-950" style={{ animationDelay: '80ms' }}>
-              خلّي الشغل المتكرر يمشي تلقائيًا.
+              {niche.hero.line1}
             </span>
             <span className="hero-rise block text-indigo-600" style={{ animationDelay: '320ms' }}>
               ووقتك؟ تَمام.
@@ -26,7 +28,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenInquiry, onOpenS
             className="hero-rise mt-5 max-w-xl text-base leading-8 text-slate-600 sm:text-lg lg:mt-6"
             style={{ animationDelay: '560ms' }}
           >
-            نبني أنظمة ذكية تردّ على العملاء، تتابع الفرص، وتنظّم المواعيد — لتخفيف المهام اليدوية ومساعدة فريقك يركّز على نمو شركتك.
+            {niche.hero.sub}
           </p>
 
           <div
@@ -55,7 +57,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenInquiry, onOpenS
 
         {/* Live product moment */}
         <div className="hero-rise pb-6 lg:pb-0" style={{ animationDelay: '480ms' }}>
-          <AutomationChatDemo />
+          <AutomationChatDemo
+            contactName={niche.chat.contactName}
+            avatarLetter={niche.chat.avatarLetter}
+            clock={niche.chat.clock}
+            messages={niche.chat.messages}
+            bookedTitle={niche.chat.bookedTitle}
+            bookedSub={niche.chat.bookedSub}
+          />
           <p className="mt-5 text-center text-xs text-slate-400">
             مثال توضيحي لمحادثة بعد الأتمتة
           </p>

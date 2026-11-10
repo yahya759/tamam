@@ -1,21 +1,14 @@
 import React from 'react';
-import { CalendarCheck, Clock, LayoutDashboard, Moon, ShieldCheck, Languages } from 'lucide-react';
+import { CalendarCheck, LayoutDashboard, Moon, ShieldCheck, MessageCircle, Languages, Bell } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
-
-const FACTS = [
-  { icon: Languages, text: 'واجهة عربية كاملة من اليمين لليسار، بوضع فاتح وداكن.' },
-  { icon: LayoutDashboard, text: 'لوحة تحكم لصاحب المنصة يدير منها العيادات المشتركة.' },
-  { icon: ShieldCheck, text: 'بيانات كل عيادة معزولة عن غيرها بصلاحيات على مستوى قاعدة البيانات.' },
-];
-
-const SAMPLE_APPOINTMENTS = [
-  { time: '٩:٠٠', service: 'كشف عام', status: 'مؤكد', tone: 'bg-emerald-50 text-emerald-700' },
-  { time: '١٠:٣٠', service: 'تنظيف أسنان', status: 'مؤكد', tone: 'bg-emerald-50 text-emerald-700' },
-  { time: '١٢:٠٠', service: 'متابعة', status: 'بانتظار التأكيد', tone: 'bg-amber-50 text-amber-700' },
-  { time: '٤:٣٠', service: 'استشارة', status: 'مؤكد', tone: 'bg-emerald-50 text-emerald-700' },
-];
+import { getNiche } from '../niches';
 
 export const WorkSection: React.FC = () => {
+  const { work } = getNiche();
+  const factIcons = work.real
+    ? [Languages, LayoutDashboard, ShieldCheck]
+    : [MessageCircle, CalendarCheck, Bell];
+
   return (
     <section
       id="work-section"
@@ -29,11 +22,9 @@ export const WorkSection: React.FC = () => {
               id="work-title"
               className="mb-4 font-heading text-3xl font-black leading-[1.25] text-slate-950 sm:text-4xl lg:text-5xl"
             >
-              مو وعود… أنظمة شغّالة.
+              {work.title}
             </h2>
-            <p className="text-base leading-relaxed text-slate-600 sm:text-lg">
-              مثال من اللي نبنيه: منصة كاملة تدير مواعيد العيادات من أول رسالة لين التأكيد.
-            </p>
+            <p className="text-base leading-relaxed text-slate-600 sm:text-lg">{work.sub}</p>
           </div>
         </ScrollReveal>
 
@@ -41,22 +32,20 @@ export const WorkSection: React.FC = () => {
           <div className="grid items-center gap-10 rounded-[2rem] border border-slate-200/80 bg-white p-6 shadow-xs sm:p-10 lg:grid-cols-2 lg:gap-14">
             {/* Description */}
             <div>
-              <h3 className="mb-3 font-heading text-2xl font-bold text-slate-950 sm:text-3xl">
-                وقتي: حجز مواعيد للعيادات
-              </h3>
-              <p className="mb-7 text-base leading-8 text-slate-600">
-                منصة SaaS لحجز المواعيد، مبنية للعيادات الناطقة بالعربية. المريض يحجز، والعيادة تشوف جدولها،
-                وصاحب المنصة يدير كل العيادات المشتركة من مكان واحد.
-              </p>
+              <h3 className="mb-3 font-heading text-2xl font-bold text-slate-950 sm:text-3xl">{work.cardTitle}</h3>
+              <p className="mb-7 text-base leading-8 text-slate-600">{work.desc}</p>
               <ul className="space-y-4">
-                {FACTS.map(({ icon: Icon, text }) => (
-                  <li key={text} className="flex items-start gap-3">
-                    <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600">
-                      <Icon className="h-[18px] w-[18px]" />
-                    </span>
-                    <span className="text-[15px] leading-7 text-slate-700">{text}</span>
-                  </li>
-                ))}
+                {work.facts.map((text, i) => {
+                  const Icon = factIcons[i];
+                  return (
+                    <li key={text} className="flex items-start gap-3">
+                      <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600">
+                        <Icon className="h-[18px] w-[18px]" />
+                      </span>
+                      <span className="text-[15px] leading-7 text-slate-700">{text}</span>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
 
@@ -70,27 +59,29 @@ export const WorkSection: React.FC = () => {
                 <div className="flex items-center justify-between border-b border-slate-200 bg-white px-5 py-3.5">
                   <div className="flex items-center gap-2.5">
                     <CalendarCheck className="h-5 w-5 text-indigo-600" />
-                    <span className="font-heading text-[15px] font-semibold text-slate-900">مواعيد اليوم</span>
+                    <span className="font-heading text-[15px] font-semibold text-slate-900">{work.listTitle}</span>
                   </div>
-                  <span className="flex items-center gap-1.5 text-xs text-slate-500">
-                    <Clock className="h-3.5 w-3.5" />
-                    ٤ مواعيد
-                  </span>
                 </div>
                 <ul className="divide-y divide-slate-100 bg-white">
-                  {SAMPLE_APPOINTMENTS.map((a) => (
-                    <li key={a.time} className="flex items-center justify-between px-5 py-3.5">
+                  {work.rows.map((r) => (
+                    <li key={r.time} className="flex items-center justify-between px-5 py-3.5">
                       <div className="flex items-center gap-4">
-                        <span className="w-10 font-heading text-sm font-semibold tabular-nums text-slate-900">{a.time}</span>
-                        <span className="text-sm text-slate-600">{a.service}</span>
+                        <span className="w-10 font-heading text-sm font-semibold tabular-nums text-slate-900">{r.time}</span>
+                        <span className="text-sm text-slate-600">{r.label}</span>
                       </div>
-                      <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${a.tone}`}>{a.status}</span>
+                      <span
+                        className={`rounded-full px-2.5 py-1 text-xs font-medium ${
+                          r.ok ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700'
+                        }`}
+                      >
+                        {r.status}
+                      </span>
                     </li>
                   ))}
                 </ul>
                 <div className="flex items-center gap-2 bg-slate-50 px-5 py-3 text-xs text-slate-400">
                   <Moon className="h-3.5 w-3.5" />
-                  تصور توضيحي لواجهة المنصة
+                  {work.caption}
                 </div>
               </div>
             </div>
