@@ -45,36 +45,36 @@ export const PrivacyModal: React.FC<PrivacyModalProps> = ({ isOpen, onClose }) =
 
         <div className="space-y-5 p-6 text-sm leading-7 text-slate-600">
           <section>
-            <h3 className="mb-1 font-heading text-base font-semibold text-slate-900">شو بنجمع؟</h3>
+            <h3 className="mb-1 font-heading text-base font-semibold text-slate-900">وش نجمع؟</h3>
             <p>
-              لما تعبّي نموذج التواصل أو تراسلنا على واتساب، بنستلم الاسم، اسم الشركة، وسيلة التواصل،
-              والملاحظات اللي بتكتبها. ما بنطلب أي بيانات ثانية.
+              لما تعبّي نموذج التواصل أو تراسلنا على واتساب، نستلم الاسم، اسم الشركة، وسيلة التواصل،
+              والملاحظات اللي تكتبها. وما نطلب أي بيانات ثانية.
             </p>
           </section>
           <section>
             <h3 className="mb-1 font-heading text-base font-semibold text-slate-900">ليش؟</h3>
-            <p>عشان نرد عليك ونحضّر لك مقترح أتمتة مناسب لشغلك. ما بنستخدمها لغير هالغرض.</p>
+            <p>عشان نرد عليك ونحضّر لك مقترح أتمتة مناسب لشغلك. ما نستخدمها لغير هذا الغرض.</p>
           </section>
           <section>
-            <h3 className="mb-1 font-heading text-base font-semibold text-slate-900">مع مين بنشاركها؟</h3>
+            <h3 className="mb-1 font-heading text-base font-semibold text-slate-900">مع مين نشاركها؟</h3>
             <p>
-              ما بنبيع بياناتك ولا بنشاركها مع جهات تسويقية. ممكن تمرّ عبر أدوات بنستخدمها لاستلام
-              الطلبات وتنظيمها (مثل واتساب وأنظمة إدارة العملاء)، وبتخضع لسياساتها.
+              ما نبيع بياناتك ولا نشاركها مع جهات تسويقية. ممكن تمرّ عبر أدوات نستخدمها لاستلام
+              الطلبات وتنظيمها (مثل واتساب وأنظمة إدارة العملاء)، وتخضع لسياساتها.
             </p>
           </section>
           <section>
             <h3 className="mb-1 font-heading text-base font-semibold text-slate-900">قياس الزيارات</h3>
             <p>
-              ممكن نستخدم أدوات قياس (مثل Google Analytics أو Meta Pixel) لنفهم كيف بتتفاعل الناس مع
-              الموقع، وهي بتجمع بيانات استخدام عامة بدون ما تعرّف عليك بالاسم.
+              ممكن نستخدم أدوات قياس (مثل Google Analytics أو Meta Pixel) لنفهم كيف يتفاعل الناس مع
+              الموقع، وهي تجمع بيانات استخدام عامة بدون ما تعرّف عليك بالاسم.
             </p>
           </section>
           <section>
             <h3 className="mb-1 font-heading text-base font-semibold text-slate-900">حذف بياناتك</h3>
             <p>
-              لو بدك نحذف أي بيانات وصلتنا منك أو تعدّلها، راسلنا على واتساب{' '}
+              لو تبغى نحذف أي بيانات وصلتنا منك أو نعدّلها، راسلنا على واتساب{' '}
               <span dir="ltr" className="font-medium text-slate-900">{WHATSAPP_DISPLAY}</span>{' '}
-              وبنتجاوب معك.
+              ونتجاوب معك.
             </p>
           </section>
         </div>

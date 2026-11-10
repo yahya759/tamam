@@ -48,10 +48,10 @@ export const PainPointsSection: React.FC<PainPointsSectionProps> = ({ onLearnMor
             id="pain-points-title"
             className="text-3xl sm:text-4xl lg:text-5xl font-heading font-black text-slate-950 tracking-tight leading-[1.25] mb-4 sm:mb-5"
           >
-            الشغل اللي يتكرر كل يوم… عم ياخذ من وقتك
+            الشغل اللي يتكرر كل يوم… ياخذ من وقتك
           </h2>
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
-            الرد على نفس الأسئلة، متابعة كل عميل يدويًا، وتذكّر المواعيد — تفاصيل صغيرة، بس لما تتراكم بتشتّت فريقك وبتأخّر شغلك.
+            الرد على نفس الأسئلة، متابعة كل عميل يدويًا، وتذكّر المواعيد — تفاصيل صغيرة، بس لما تتراكم تشتّت فريقك وتأخّر شغلك.
           </p>
         </div>
       </ScrollReveal>
@@ -108,7 +108,7 @@ export const PainPointsSection: React.FC<PainPointsSectionProps> = ({ onLearnMor
           <div className="inline-flex items-center gap-2.5 px-5 py-3 rounded-2xl bg-indigo-50/70 border border-indigo-100/90 shadow-xs text-sm sm:text-base text-slate-800 font-medium transition-transform hover:scale-105">
             <Sparkles className="w-4 h-4 text-indigo-600 shrink-0" />
             <span>
-              <strong className="text-indigo-950 font-bold font-heading">TAMAM</strong> بتحوّل هالخطوات المتكررة إلى أنظمة تمشي مع شغلك.
+              <strong className="text-indigo-950 font-bold font-heading">TAMAM</strong> تحوّل هذي الخطوات المتكررة إلى أنظمة تمشي مع شغلك.
             </span>
           </div>
         </div>

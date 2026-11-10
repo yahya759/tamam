@@ -7,12 +7,12 @@ export function buildLeadMessage(data: InquiryFormData): string {
     .join('، ');
 
   return [
-    'مرحبا تَمام، بدي أحكي معكم عن أتمتة شغلي.',
+    'هلا تَمام، أبغى أكلمكم عن أتمتة شغلي.',
     '',
     `الاسم: ${data.name.trim()}`,
     `الشركة: ${data.businessName.trim()}`,
     `وسيلة التواصل: ${data.contact.trim()}`,
-    solutions ? `بدي أتمتة: ${solutions}` : '',
+    solutions ? `أبغى أتمتة: ${solutions}` : '',
     data.notes.trim() ? `تفاصيل: ${data.notes.trim()}` : '',
   ]
     .filter((line, i, arr) => line !== '' || (i > 0 && arr[i - 1] !== ''))

@@ -36,7 +36,7 @@ export const HowItWorksSection: React.FC<HowItWorksSectionProps> = ({ onOpenInqu
             من شغل يدوي… إلى سير عمل أذكى.
           </h2>
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
-            ما في حل واحد يناسب كل الشركات. نبدأ من طريقة شغلك، ونبني أتمتة تخدم احتياجك اليومي.
+            ما فيه حل واحد يناسب كل الشركات. نبدأ من طريقة شغلك، ونبني أتمتة تخدم احتياجك اليومي.
           </p>
         </div>
       </ScrollReveal>
@@ -96,7 +96,7 @@ export const HowItWorksSection: React.FC<HowItWorksSectionProps> = ({ onOpenInqu
               onClick={onOpenInquiry}
               className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-indigo-900 bg-indigo-50 hover:bg-indigo-100/90 border border-indigo-200/80 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer shadow-xs hover:shadow-md"
             >
-              <span>احكي لنا عن شغلك</span>
+              <span>كلّمنا عن شغلك</span>
               <ArrowLeft className="w-4 h-4 text-indigo-600" />
             </button>
           )}

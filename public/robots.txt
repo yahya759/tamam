@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /demos
+Disallow: /demo
+Disallow: /salon
+Disallow: /restaurant
+Disallow: /dental

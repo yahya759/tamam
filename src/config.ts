@@ -12,4 +12,4 @@ export const LEAD_WEBHOOK_URL: string = (import.meta.env.VITE_LEAD_WEBHOOK_URL a
 export const waLink = (message?: string): string =>
   `https://wa.me/${WHATSAPP_NUMBER}${message ? `?text=${encodeURIComponent(message)}` : ''}`;
 
-export const WA_DEFAULT_MESSAGE = 'مرحبا تَمام، بدي أحكي معكم عن أتمتة شغلي.';
+export const WA_DEFAULT_MESSAGE = 'هلا تَمام، أبغى أكلمكم عن أتمتة شغلي.';

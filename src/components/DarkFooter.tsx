@@ -126,7 +126,7 @@ export const DarkFooter: React.FC<DarkFooterProps> = ({
               className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white border border-slate-700/80 hover:border-slate-600 text-xs sm:text-sm font-semibold transition-all cursor-pointer shadow-xs hover:shadow-md"
             >
               <MessageSquare className="w-4 h-4 text-indigo-400" />
-              <span>احكي لنا عن شغلك</span>
+              <span>كلّمنا عن شغلك</span>
             </button>
 
             <a

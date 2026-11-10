@@ -133,7 +133,7 @@ export const PackagesSection: React.FC<PackagesSectionProps> = ({
                 <HelpCircle className="w-5 h-5" />
               </div>
               <p className="text-sm sm:text-base font-medium text-slate-800 leading-relaxed">
-                مش متأكد أي حل بناسبك؟ احكيلنا عن طريقة شغلك، وبنساعدك تحدد نقطة البداية.
+                مو متأكد أي حل يناسبك؟ قل لنا عن طريقة شغلك، ونساعدك تحدد نقطة البداية.
               </p>
             </div>
 
@@ -142,7 +142,7 @@ export const PackagesSection: React.FC<PackagesSectionProps> = ({
               onClick={onOpenConsultation}
               className="w-full sm:w-auto px-5 py-2.5 text-xs sm:text-sm font-semibold text-indigo-950 bg-white hover:bg-slate-50 border border-indigo-200 rounded-xl transition-all shadow-2xs hover:shadow-xs cursor-pointer shrink-0"
             >
-              احكي لنا عن شغلك
+              كلّمنا عن شغلك
             </button>
           </div>
         </div>

@@ -44,7 +44,7 @@ export const ClosingCtaSection: React.FC<ClosingCtaSectionProps> = ({ onOpenInqu
 
             {/* Description */}
             <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed mb-8 sm:mb-10 font-normal">
-              احكيلنا كيف بتمشي المهام عندك اليوم، وبنساعدك تكتشف وين ممكن الأتمتة توفر وقت فريقك.
+              قل لنا كيف تمشي المهام عندك اليوم، ونساعدك تكتشف وين ممكن الأتمتة توفر وقت فريقك.
             </p>
 
             {/* Primary Action Button (Warm Orange CTA matching brand identity) */}
@@ -54,7 +54,7 @@ export const ClosingCtaSection: React.FC<ClosingCtaSectionProps> = ({ onOpenInqu
                 onClick={onOpenInquiry}
                 className="w-full sm:w-auto px-8 py-4 text-base font-semibold text-white bg-gradient-to-r from-[#FF5722] via-[#F4511E] to-[#E64A19] hover:from-[#F4511E] hover:to-[#D84315] rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-orange-400/50 flex items-center justify-center gap-2.5 group/btn"
               >
-                <span>احكي لنا عن شغلك</span>
+                <span>كلّمنا عن شغلك</span>
                 <ArrowLeft className="w-4 h-4 transition-transform duration-200 group-hover/btn:-translate-x-1" />
               </button>
             </div>
@@ -68,7 +68,7 @@ export const ClosingCtaSection: React.FC<ClosingCtaSectionProps> = ({ onOpenInqu
               <span className="text-slate-300 hidden sm:inline">·</span>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-3.5 h-3.5 text-indigo-600" />
-                <span>حلول تفصّل حسب واقع شركتك</span>
+                <span>حلول مفصّلة حسب واقع شركتك</span>
               </div>
               <span className="text-slate-300 hidden sm:inline">·</span>
               <div className="flex items-center gap-1.5">

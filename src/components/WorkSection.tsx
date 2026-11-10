@@ -29,10 +29,10 @@ export const WorkSection: React.FC = () => {
               id="work-title"
               className="mb-4 font-heading text-3xl font-black leading-[1.25] text-slate-950 sm:text-4xl lg:text-5xl"
             >
-              مش وعود… أنظمة شغّالة.
+              مو وعود… أنظمة شغّالة.
             </h2>
             <p className="text-base leading-relaxed text-slate-600 sm:text-lg">
-              مثال من اللي بنبنيه: منصة كاملة تدير مواعيد العيادات من أول رسالة لحد التأكيد.
+              مثال من اللي نبنيه: منصة كاملة تدير مواعيد العيادات من أول رسالة لين التأكيد.
             </p>
           </div>
         </ScrollReveal>
@@ -45,8 +45,8 @@ export const WorkSection: React.FC = () => {
                 وقتي: حجز مواعيد للعيادات
               </h3>
               <p className="mb-7 text-base leading-8 text-slate-600">
-                منصة SaaS لحجز المواعيد، مبنية للعيادات الناطقة بالعربية. المريض بيحجز، والعيادة بتشوف جدولها،
-                وصاحب المنصة بيدير كل العيادات المشتركة من مكان واحد.
+                منصة SaaS لحجز المواعيد، مبنية للعيادات الناطقة بالعربية. المريض يحجز، والعيادة تشوف جدولها،
+                وصاحب المنصة يدير كل العيادات المشتركة من مكان واحد.
               </p>
               <ul className="space-y-4">
                 {FACTS.map(({ icon: Icon, text }) => (

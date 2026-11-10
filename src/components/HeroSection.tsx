@@ -38,7 +38,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenInquiry, onOpenS
               onClick={onOpenInquiry}
               className="group flex cursor-pointer items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-[#FF5722] via-[#F4511E] to-[#E64A19] px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-orange-500/25 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-orange-500/40 focus:outline-none focus-visible:ring-4 focus-visible:ring-orange-400/50 active:translate-y-0"
             >
-              <span>احكي لنا عن شغلك</span>
+              <span>كلّمنا عن شغلك</span>
               <ArrowLeft className="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-1" />
             </button>
 

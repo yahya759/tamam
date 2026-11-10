@@ -13,22 +13,22 @@ import {
   Zap,
 } from 'lucide-react';
 
-type Message = { from: 'customer' | 'agent'; text: string; time: string };
+export type ChatMessage = { from: 'customer' | 'agent'; text: string; time: string };
 
-const MESSAGES: Message[] = [
-  { from: 'customer', text: 'مرحبا، بدي موعد تنظيف أسنان بكرا بعد الظهر', time: '٢:١٤' },
-  { from: 'agent', text: 'أهلًا فيك! بكرا عندنا ٣:٠٠ أو ٤:٣٠ مساءً. أي وقت بناسبك؟', time: '٢:١٤' },
-  { from: 'customer', text: '٤:٣٠ تمام', time: '٢:١٥' },
-  { from: 'agent', text: 'حجزتلك الموعد بكرا الساعة ٤:٣٠ ✓ وبذكّرك قبلها بساعتين على واتساب.', time: '٢:١٥' },
+const DEFAULT_MESSAGES: ChatMessage[] = [
+  { from: 'customer', text: 'السلام عليكم، أبغى موعد تنظيف أسنان بكرة العصر', time: '٢:١٤' },
+  { from: 'agent', text: 'وعليكم السلام! بكرة عندنا ٣:٠٠ أو ٤:٣٠ مساءً. أي وقت يناسبك؟', time: '٢:١٤' },
+  { from: 'customer', text: '٤:٣٠ زين', time: '٢:١٥' },
+  { from: 'agent', text: 'تم، حجزت لك موعدك بكرة الساعة ٤:٣٠ ✓ وأذكّرك قبله بساعتين على واتساب.', time: '٢:١٥' },
 ];
 
 const PHONE_W = 290;
 const PHONE_H = 640;
 
 /** On wide screens, shrink the phone so the whole hero fits in the viewport height. */
-const usePhoneScale = () => {
+const usePhoneScale = (enabled: boolean) => {
   const compute = () => {
-    if (typeof window === 'undefined' || window.innerWidth < 1024) return 1;
+    if (!enabled || typeof window === 'undefined' || window.innerWidth < 1024) return 1;
     return Math.min(1, Math.max(0.6, (window.innerHeight - 215) / PHONE_H));
   };
   const [scale, setScale] = useState(compute);
@@ -36,12 +36,33 @@ const usePhoneScale = () => {
     const onResize = () => setScale(compute());
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [enabled]);
   return scale;
 };
 
-export const AutomationChatDemo: React.FC = () => {
-  const scale = usePhoneScale();
+export interface AutomationChatDemoProps {
+  contactName?: string;
+  avatarLetter?: string;
+  /** Phone status-bar clock, e.g. "2:14". */
+  clock?: string;
+  messages?: ChatMessage[];
+  /** Shrink the phone on short wide viewports (used inside the landing hero). */
+  autoScale?: boolean;
+  bookedTitle?: string;
+  bookedSub?: string;
+}
+
+export const AutomationChatDemo: React.FC<AutomationChatDemoProps> = ({
+  contactName = 'عيادة الشفاء',
+  avatarLetter = 'ع',
+  clock = '2:14',
+  messages: MESSAGES = DEFAULT_MESSAGES,
+  autoScale = true,
+  bookedTitle = 'تم حجز الموعد',
+  bookedSub = 'وفريقك ما تدخّل',
+}) => {
+  const scale = usePhoneScale(autoScale);
   const [visible, setVisible] = useState(0);
   const [typing, setTyping] = useState(false);
   const [booked, setBooked] = useState(false);
@@ -85,7 +106,7 @@ export const AutomationChatDemo: React.FC = () => {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [MESSAGES]);
 
   return (
     <div
@@ -128,8 +149,8 @@ export const AutomationChatDemo: React.FC = () => {
             <CalendarCheck className="h-4 w-4" />
           </span>
           <div className="leading-tight">
-            <p className="font-heading text-[13px] font-semibold text-indigo-950">تم حجز الموعد</p>
-            <p className="mt-0.5 text-[11px] text-slate-500">وفريقك ما تدخّل</p>
+            <p className="font-heading text-[13px] font-semibold text-indigo-950">{bookedTitle}</p>
+            <p className="mt-0.5 text-[11px] text-slate-500">{bookedSub}</p>
           </div>
         </div>
       )}
@@ -139,7 +160,7 @@ export const AutomationChatDemo: React.FC = () => {
         dir="ltr"
         className="relative h-[640px] rounded-[3.1rem] bg-gradient-to-b from-[#5b5b61] via-[#232327] to-[#4a4a50] p-[2.5px] shadow-[0_60px_100px_-30px_rgba(30,27,75,0.7),0_30px_60px_-20px_rgba(0,0,0,0.35)]"
         role="img"
-        aria-label="مثال على محادثة واتساب يردّ فيها وكيل تمام تلقائيًا ويحجز موعدًا لعميل"
+        aria-label={`مثال على محادثة واتساب يردّ فيها وكيل تمام تلقائيًا على عميل ${contactName}`}
       >
         {/* Side buttons */}
         <span className="absolute -left-[3px] top-[104px] h-7 w-[3px] rounded-l-sm bg-[#3a3a40]" aria-hidden="true" />
@@ -158,7 +179,7 @@ export const AutomationChatDemo: React.FC = () => {
             {/* Status bar + header */}
             <div className="bg-[#1F2C34] px-5 pb-2.5 pt-3">
               <div className="flex h-[26px] items-center justify-between text-white">
-                <span className="text-[13px] font-semibold tabular-nums">2:14</span>
+                <span className="text-[13px] font-semibold tabular-nums">{clock}</span>
                 <span className="flex items-center gap-1">
                   <Signal className="h-3.5 w-3.5" />
                   <Wifi className="h-3.5 w-3.5" />
@@ -169,10 +190,10 @@ export const AutomationChatDemo: React.FC = () => {
               <div dir="rtl" className="mt-2 flex items-center gap-2.5">
                 <ChevronRight className="h-5 w-5 text-white/80" />
                 <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-indigo-400 to-violet-500 font-heading text-sm font-semibold text-white">
-                  ع
+                  {avatarLetter}
                 </span>
                 <div className="flex-1 leading-tight">
-                  <p className="font-heading text-[14px] font-semibold text-white">عيادة الشفاء</p>
+                  <p className="font-heading text-[14px] font-semibold text-white">{contactName}</p>
                   <p className="mt-0.5 text-[11px] text-emerald-400">متصل الآن</p>
                 </div>
                 <Video className="h-[18px] w-[18px] text-white/75" />

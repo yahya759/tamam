@@ -110,7 +110,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
         <div className="flex items-center justify-between p-6 pb-4 border-b border-slate-100">
           <div>
             <h2 id="inquiry-title" className="text-xl sm:text-2xl font-heading font-bold text-slate-950">
-              احكي لنا عن شغلك
+              كلّمنا عن شغلك
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 mt-1">
               شاركنا نوع المهام التي تود أتمتتها في شركتك
@@ -135,14 +135,14 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
               <>
                 <h3 className="text-xl font-heading font-bold text-slate-900 mb-2">وصلتنا تفاصيلك</h3>
                 <p className="text-sm text-slate-600 max-w-md mb-6 leading-relaxed">
-                  شكرًا <strong className="text-slate-900">{formData.name}</strong>. بنراجع احتياج <strong className="text-slate-900">{formData.businessName}</strong> وبنتواصل معك قريبًا.
+                  شكرًا <strong className="text-slate-900">{formData.name}</strong>. نراجع احتياج <strong className="text-slate-900">{formData.businessName}</strong> ونتواصل معك قريبًا.
                 </p>
               </>
             ) : (
               <>
-                <h3 className="text-xl font-heading font-bold text-slate-900 mb-2">باقي خطوة وحدة: ابعت الرسالة</h3>
+                <h3 className="text-xl font-heading font-bold text-slate-900 mb-2">باقي خطوة وحدة: أرسل الرسالة</h3>
                 <p className="text-sm text-slate-600 max-w-md mb-6 leading-relaxed">
-                  جهّزنا تفاصيلك في رسالة على واتساب. اضغط إرسال هناك وبنرد عليك، وإذا ما انفتح واتساب استخدم الزر تحت.
+                  جهّزنا تفاصيلك في رسالة على واتساب. اضغط إرسال هناك ونرد عليك، وإذا ما انفتح واتساب استخدم الزر تحت.
                 </p>
               </>
             )}
@@ -294,7 +294,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
               </button>
 
               <div className="text-[11px] text-slate-400 text-center sm:text-left">
-                بنستخدم بياناتك للرد عليك بس.{' '}
+                نستخدم بياناتك للرد عليك فقط.{' '}
                 {onOpenPrivacy && (
                   <button type="button" onClick={onOpenPrivacy} className="underline underline-offset-2 hover:text-slate-600 cursor-pointer">
                     سياسة الخصوصية
