@@ -23,9 +23,9 @@ test('TAMAM_PACKAGES includes the 3 exact package offerings', () => {
   assert.equal(TAMAM_PACKAGES[0].name, 'CRM واستقبال الاستفسارات');
   assert.equal(TAMAM_PACKAGES[1].name, 'مواعيد وعروض واتساب');
   assert.equal(TAMAM_PACKAGES[2].name, 'أتمتة مخصّصة');
-  assert.equal(TAMAM_PACKAGES[0].ctaLabel, 'ناقش احتياج شركتك');
-  assert.equal(TAMAM_PACKAGES[1].ctaLabel, 'ناقش احتياج شركتك');
-  assert.equal(TAMAM_PACKAGES[2].ctaLabel, 'احكيلنا شو بدك تأتمت');
+  assert.equal(TAMAM_PACKAGES[0].ctaLabel, 'احكي لنا عن شغلك');
+  assert.equal(TAMAM_PACKAGES[1].ctaLabel, 'احكي لنا عن شغلك');
+  assert.equal(TAMAM_PACKAGES[2].ctaLabel, 'احكي لنا عن شغلك');
 });
 
 test('PAIN_POINTS contains the 3 exact requested cards', () => {

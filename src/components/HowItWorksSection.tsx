@@ -31,7 +31,7 @@ export const HowItWorksSection: React.FC<HowItWorksSectionProps> = ({ onOpenInqu
         <div className="text-center max-w-4xl mx-auto mb-14 sm:mb-20">
           <h2
             id="workflow-title"
-            className="text-3xl sm:text-4xl lg:text-5xl font-heading font-black text-slate-950 tracking-tight leading-[1.25] mb-4 sm:mb-5"
+            className="text-3xl sm:text-4xl lg:text-5xl font-heading font-black text-slate-950 leading-[1.25] mb-4 sm:mb-5"
           >
             من شغل يدوي… إلى سير عمل أذكى.
           </h2>
@@ -67,10 +67,8 @@ export const HowItWorksSection: React.FC<HowItWorksSectionProps> = ({ onOpenInqu
                   </div>
 
                   {/* Step Title */}
-                  <h3 className="text-lg sm:text-xl font-heading font-bold text-slate-900 mb-3 flex items-center gap-2 group-hover:text-indigo-950 transition-colors">
-                    <span>{step.stepNumber}</span>
-                    <span className="text-slate-300 text-sm font-light">—</span>
-                    <span>{step.title}</span>
+                  <h3 className="text-lg sm:text-xl font-heading font-bold text-slate-900 mb-3 group-hover:text-indigo-950 transition-colors">
+                    {step.title}
                   </h3>
 
                   {/* Step Description */}
@@ -79,15 +77,6 @@ export const HowItWorksSection: React.FC<HowItWorksSectionProps> = ({ onOpenInqu
                   </p>
                 </div>
 
-                {/* Phase Status Pill */}
-                <div className="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
-                  <span className="font-medium text-slate-500 group-hover:text-slate-900 transition-colors">
-                    المرحلة {idx + 1} من 3
-                  </span>
-                  <span className="text-[11px] text-indigo-600 font-semibold group-hover:underline">
-                    خطوة مدروسة
-                  </span>
-                </div>
               </div>
             </ScrollReveal>
           ))}
@@ -107,7 +96,7 @@ export const HowItWorksSection: React.FC<HowItWorksSectionProps> = ({ onOpenInqu
               onClick={onOpenInquiry}
               className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-indigo-900 bg-indigo-50 hover:bg-indigo-100/90 border border-indigo-200/80 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer shadow-xs hover:shadow-md"
             >
-              <span>ابدأ بتحديد احتياج فريقك مع تَمام</span>
+              <span>احكي لنا عن شغلك</span>
               <ArrowLeft className="w-4 h-4 text-indigo-600" />
             </button>
           )}

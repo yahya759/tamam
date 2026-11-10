@@ -137,7 +137,7 @@ export const InfoModal: React.FC<InfoModalProps> = ({
             }}
             className="px-5 py-2.5 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl transition-colors flex items-center gap-1.5 cursor-pointer shadow-sm shadow-indigo-600/20"
           >
-            <span>احكي لنا عن احتياجك</span>
+            <span>احكي لنا عن شغلك</span>
             <ArrowLeft className="w-3.5 h-3.5" />
           </button>
         </div>

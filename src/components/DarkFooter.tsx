@@ -1,11 +1,15 @@
 import React from 'react';
-import { ArrowUpLeft, MessageSquare, Sparkles } from 'lucide-react';
+import { ArrowUpLeft, MessageSquare } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
+import { WA_DEFAULT_MESSAGE, WHATSAPP_DISPLAY, waLink } from '../config';
+import { trackEvent } from '../lib/analytics';
 
 interface DarkFooterProps {
   onOpenSolutions: () => void;
   onOpenHowItWorks: () => void;
   onOpenPackages: () => void;
   onOpenInquiry: () => void;
+  onOpenPrivacy: () => void;
 }
 
 export const DarkFooter: React.FC<DarkFooterProps> = ({
@@ -13,6 +17,7 @@ export const DarkFooter: React.FC<DarkFooterProps> = ({
   onOpenHowItWorks,
   onOpenPackages,
   onOpenInquiry,
+  onOpenPrivacy,
 }) => {
   const currentYear = new Date().getFullYear();
 
@@ -121,8 +126,19 @@ export const DarkFooter: React.FC<DarkFooterProps> = ({
               className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white border border-slate-700/80 hover:border-slate-600 text-xs sm:text-sm font-semibold transition-all cursor-pointer shadow-xs hover:shadow-md"
             >
               <MessageSquare className="w-4 h-4 text-indigo-400" />
-              <span>ابدأ محادثة الاستشارة</span>
+              <span>احكي لنا عن شغلك</span>
             </button>
+
+            <a
+              href={waLink(WA_DEFAULT_MESSAGE)}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackEvent('whatsapp_click', 'contact')}
+              className="mt-3 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#25D366]/10 hover:bg-[#25D366]/20 text-[#4ade80] border border-[#25D366]/30 text-xs sm:text-sm font-semibold transition-colors"
+            >
+              <WhatsAppIcon className="w-4 h-4" />
+              <span dir="ltr">{WHATSAPP_DISPLAY}</span>
+            </a>
           </div>
         </div>
 
@@ -132,7 +148,14 @@ export const DarkFooter: React.FC<DarkFooterProps> = ({
             <span>© {currentYear} TAMAM | تَمام — أتمتة ذكية للشركات. جميع الحقوق محفوظة.</span>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-5">
+            <button
+              type="button"
+              onClick={onOpenPrivacy}
+              className="text-xs text-slate-400 hover:text-white transition-colors cursor-pointer"
+            >
+              سياسة الخصوصية
+            </button>
             <button
               type="button"
               onClick={handleScrollToTop}

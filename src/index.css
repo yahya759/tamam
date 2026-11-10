@@ -73,3 +73,6 @@
   .hero-rise, .chat-bubble, .chip-in { animation: none; opacity: 1; }
   .typing-dot { animation: none; }
 }
+
+/* Arabic is a connected script: any letter-spacing breaks the joins. */
+h1, h2, h3, h4, h5, h6, p, button, a, span { letter-spacing: normal; }

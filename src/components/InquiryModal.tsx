@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
-import { X, CheckCircle, ArrowLeft, AlertCircle, Info, ExternalLink } from 'lucide-react';
+import { X, CheckCircle, ArrowLeft, AlertCircle, ExternalLink } from 'lucide-react';
 import { TAMAM_SOLUTIONS, validateInquiryForm, InquiryFormData } from '../utils/automation-state';
+import { LEAD_WEBHOOK_URL, waLink } from '../config';
+import { buildLeadMessage, sendLeadToWebhook } from '../lib/leads';
+import { trackEvent } from '../lib/analytics';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface InquiryModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onOpenPrivacy?: () => void;
   initialPackageInterest?: string | null;
 }
 
 export const InquiryModal: React.FC<InquiryModalProps> = ({
   isOpen,
   onClose,
+  onOpenPrivacy,
   initialPackageInterest,
 }) => {
   const [formData, setFormData] = useState<InquiryFormData>({
@@ -31,6 +37,8 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
   }, [initialPackageInterest]);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [delivery, setDelivery] = useState<'webhook' | 'whatsapp'>('whatsapp');
 
   if (!isOpen) return null;
 
@@ -46,7 +54,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const result = validateInquiryForm(formData);
     if (!result.isValid) {
@@ -54,7 +62,26 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
       return;
     }
     setErrors({});
+
+    const message = buildLeadMessage(formData);
+
+    if (LEAD_WEBHOOK_URL) {
+      setIsSending(true);
+      const ok = await sendLeadToWebhook(formData);
+      setIsSending(false);
+      if (ok) {
+        setDelivery('webhook');
+        setIsSubmitted(true);
+        trackEvent('lead_submitted', 'lead');
+        return;
+      }
+    }
+
+    // No webhook configured (or it failed): hand the lead over to WhatsApp so it is never lost.
+    window.open(waLink(message), '_blank', 'noopener,noreferrer');
+    setDelivery('whatsapp');
     setIsSubmitted(true);
+    trackEvent('lead_submitted', 'lead');
   };
 
   const handleReset = () => {
@@ -99,26 +126,36 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
           </button>
         </div>
 
-        {/* Informative Config Note */}
-        <div className="mx-6 mt-4 p-3 bg-amber-50/80 border border-amber-200/80 rounded-xl flex items-start gap-2.5 text-xs text-amber-900 leading-relaxed">
-          <Info className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
-          <div>
-            <strong className="font-semibold block mb-0.5">ملاحظة تشغيلية واضحة:</strong>
-            لم يتم تزويد البراند بعد ببيانات تواصل رسمية أو رابط حجز. هذا النموذج يعمل بالكامل كواجهة تفاعلية جاهزة للربط المباشر مع نظامكم (CRM، بريد، أو رابط تقويم).
-          </div>
-        </div>
-
         {isSubmitted ? (
           <div className="p-8 text-center flex flex-col items-center">
             <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-4">
               <CheckCircle className="w-8 h-8" />
             </div>
-            <h3 className="text-xl font-heading font-bold text-slate-900 mb-2">
-              وصلتنا تفاصيل مشروعك!
-            </h3>
-            <p className="text-sm text-slate-600 max-w-md mb-6 leading-relaxed">
-              شكرًا لك يا <strong className="text-slate-900">{formData.name}</strong>. فريق تَمام سيراجع احتياجات شركة <strong className="text-slate-900">{formData.businessName}</strong> لتحضير مقترح أتمتة مخصص يناسب سير عملكم.
-            </p>
+            {delivery === 'webhook' ? (
+              <>
+                <h3 className="text-xl font-heading font-bold text-slate-900 mb-2">وصلتنا تفاصيلك</h3>
+                <p className="text-sm text-slate-600 max-w-md mb-6 leading-relaxed">
+                  شكرًا <strong className="text-slate-900">{formData.name}</strong>. بنراجع احتياج <strong className="text-slate-900">{formData.businessName}</strong> وبنتواصل معك قريبًا.
+                </p>
+              </>
+            ) : (
+              <>
+                <h3 className="text-xl font-heading font-bold text-slate-900 mb-2">باقي خطوة وحدة: ابعت الرسالة</h3>
+                <p className="text-sm text-slate-600 max-w-md mb-6 leading-relaxed">
+                  جهّزنا تفاصيلك في رسالة على واتساب. اضغط إرسال هناك وبنرد عليك، وإذا ما انفتح واتساب استخدم الزر تحت.
+                </p>
+              </>
+            )}
+            <a
+              href={waLink(buildLeadMessage(formData))}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackEvent('whatsapp_click', 'contact')}
+              className="mb-4 inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-[#25D366] hover:bg-[#1fbd5b] rounded-xl shadow-lg shadow-emerald-500/20 transition-colors"
+            >
+              <WhatsAppIcon className="w-5 h-5" />
+              <span>{delivery === 'webhook' ? 'كلّمنا على واتساب' : 'افتح واتساب وأرسل الرسالة'}</span>
+            </a>
             <div className="flex gap-3">
               <button
                 type="button"
@@ -132,7 +169,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                 onClick={onClose}
                 className="px-5 py-2.5 text-sm font-semibold text-white bg-slate-900 hover:bg-slate-800 rounded-xl transition-colors cursor-pointer"
               >
-                العودة للرئيسية
+                إغلاق
               </button>
             </div>
           </div>
@@ -249,14 +286,20 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3">
               <button
                 type="submit"
+                disabled={isSending}
                 className="w-full sm:w-auto px-6 py-3 text-sm font-semibold text-white bg-gradient-to-r from-[#FF5722] to-[#F4511E] hover:from-[#F4511E] hover:to-[#E64A19] rounded-xl shadow-lg shadow-orange-500/20 hover:shadow-orange-500/30 transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
-                <span>إرسال التفاصيل</span>
+                <span>{isSending ? 'جارٍ الإرسال…' : 'إرسال التفاصيل'}</span>
                 <ArrowLeft className="w-4 h-4" />
               </button>
 
               <div className="text-[11px] text-slate-400 text-center sm:text-left">
-                بياناتك مشفرة ومحمية بالكامل
+                بنستخدم بياناتك للرد عليك بس.{' '}
+                {onOpenPrivacy && (
+                  <button type="button" onClick={onOpenPrivacy} className="underline underline-offset-2 hover:text-slate-600 cursor-pointer">
+                    سياسة الخصوصية
+                  </button>
+                )}
               </div>
             </div>
           </form>

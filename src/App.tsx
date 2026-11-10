@@ -6,6 +6,9 @@
 import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
+import { WorkSection } from './components/WorkSection';
+import { PrivacyModal } from './components/PrivacyModal';
+import { WhatsAppFab } from './components/WhatsAppFab';
 import { InquiryModal } from './components/InquiryModal';
 import { SolutionsDrawer } from './components/SolutionsDrawer';
 import { InfoModal } from './components/InfoModals';
@@ -18,6 +21,7 @@ import { DarkFooter } from './components/DarkFooter';
 export default function App() {
   const [isInquiryOpen, setIsInquiryOpen] = useState(false);
   const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
   const [infoModalType, setInfoModalType] = useState<'how-it-works' | 'packages' | null>(null);
   const [preselectedSolution, setPreselectedSolution] = useState<string | null>(null);
   const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
@@ -131,6 +135,9 @@ export default function App() {
       {/* 5. Section 2: How TAMAM Works (From manual to smart workflow) */}
       <HowItWorksSection onOpenInquiry={() => setIsInquiryOpen(true)} />
 
+      {/* Proof: a real system we built */}
+      <WorkSection />
+
       {/* 6. Section 3: Packages & Offerings (حلول تناسب طريقة شغلك) */}
       <PackagesSection
         onSelectPackage={(pkgName) => {
@@ -166,6 +173,7 @@ export default function App() {
           }
         }}
         onOpenInquiry={() => setIsInquiryOpen(true)}
+        onOpenPrivacy={() => setIsPrivacyOpen(true)}
       />
 
       {/* Modals & Drawers */}
@@ -176,8 +184,11 @@ export default function App() {
           setPreselectedSolution(null);
           setSelectedPackage(null);
         }}
+        onOpenPrivacy={() => setIsPrivacyOpen(true)}
         initialPackageInterest={selectedPackage}
       />
+      <PrivacyModal isOpen={isPrivacyOpen} onClose={() => setIsPrivacyOpen(false)} />
+      <WhatsAppFab />
 
       <SolutionsDrawer
         isOpen={isSolutionsOpen}

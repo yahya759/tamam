@@ -142,7 +142,7 @@ export const PackagesSection: React.FC<PackagesSectionProps> = ({
               onClick={onOpenConsultation}
               className="w-full sm:w-auto px-5 py-2.5 text-xs sm:text-sm font-semibold text-indigo-950 bg-white hover:bg-slate-50 border border-indigo-200 rounded-xl transition-all shadow-2xs hover:shadow-xs cursor-pointer shrink-0"
             >
-              استشر فريق تَمام
+              احكي لنا عن شغلك
             </button>
           </div>
         </div>
