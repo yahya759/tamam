@@ -1,5 +1,5 @@
 import React from 'react';
-import { Database, CalendarClock, Cpu, Check, ArrowLeft, HelpCircle } from 'lucide-react';
+import { Database, CalendarClock, Cpu, Check, ArrowLeft, HelpCircle, Clock } from 'lucide-react';
 import { TAMAM_PACKAGES } from '../utils/automation-state';
 import { ScrollReveal } from './ScrollReveal';
 import { getNiche } from '../niches';
@@ -89,10 +89,29 @@ export const PackagesSection: React.FC<PackagesSectionProps> = ({
                     {pkg.name}
                   </h3>
 
-                  {/* Main Promise */}
-                  <p className="text-sm text-slate-700 font-medium leading-relaxed mb-6 p-3.5 rounded-2xl bg-slate-50/80 border border-slate-100">
-                    {pkg.promise}
-                  </p>
+                  {/* Price + delivery time */}
+                  <div className="grid grid-cols-2 mb-5 rounded-2xl border border-slate-200 bg-white overflow-hidden">
+                    <div className="p-4">
+                      <span className="block text-[11px] font-semibold text-slate-400 mb-1">السعر</span>
+                      <span className="block text-lg sm:text-xl font-heading font-bold text-slate-950 leading-tight">{pkg.price}</span>
+                      <span className="block mt-1 text-[11px] text-slate-500 leading-snug">{pkg.priceNote}</span>
+                    </div>
+                    <div className="p-4 border-r border-slate-200 bg-slate-50/60">
+                      <span className="flex items-center gap-1 text-[11px] font-semibold text-slate-400 mb-1">
+                        <Clock className="w-3 h-3" />
+                        مدة التسليم
+                      </span>
+                      <span className="block text-lg sm:text-xl font-heading font-bold text-slate-950 leading-tight">{pkg.duration}</span>
+                      <span className="block mt-1 text-[11px] text-slate-500 leading-snug">{pkg.durationNote}</span>
+                    </div>
+                  </div>
+
+                  {/* Value */}
+                  <div className="mb-6 p-3.5 rounded-2xl bg-indigo-50/60 border border-indigo-100/80">
+                    <span className="block text-[11px] font-semibold text-indigo-600 mb-1">القيمة</span>
+                    <p className="text-sm text-slate-800 font-medium leading-relaxed">{pkg.value}</p>
+                    <p className="mt-2 text-xs text-slate-600 leading-relaxed">{pkg.promise}</p>
+                  </div>
 
                   {/* Features List */}
                   <div className="space-y-3 mb-8">

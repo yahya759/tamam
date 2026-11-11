@@ -96,6 +96,14 @@ export interface PackageItem {
   features: string[];
   ctaLabel: string;
   badge?: string;
+  /** What the client gets, in one line. */
+  value: string;
+  /** Price shown big on the card. */
+  price: string;
+  priceNote: string;
+  /** Delivery time shown on the card. */
+  duration: string;
+  durationNote: string;
 }
 
 export const TAMAM_PACKAGES: PackageItem[] = [
@@ -111,6 +119,11 @@ export const TAMAM_PACKAGES: PackageItem[] = [
     ],
     ctaLabel: 'كلّمنا عن شغلك',
     badge: 'تنظيم ومتابعة العملاء',
+    value: 'كل استفسار يتسجل وينتابع، وما يضيع عليك عميل.',
+    price: '١٬٢٠٠ ر.س',
+    priceNote: 'رسوم إعداد لمرة وحدة',
+    duration: 'أسبوع',
+    durationNote: 'من الاتفاق لين التشغيل',
   },
   {
     id: 'appointments-whatsapp-offers',
@@ -124,6 +137,11 @@ export const TAMAM_PACKAGES: PackageItem[] = [
     ],
     ctaLabel: 'كلّمنا عن شغلك',
     badge: 'تذكير وعروض ذكية',
+    value: 'مواعيد مؤكدة وعميل ما ينسى موعده.',
+    price: '١٬٨٠٠ ر.س',
+    priceNote: 'رسوم إعداد لمرة وحدة',
+    duration: '٥ أيام',
+    durationNote: 'من الاتفاق لين التشغيل',
   },
   {
     id: 'custom-automation',
@@ -136,6 +154,11 @@ export const TAMAM_PACKAGES: PackageItem[] = [
     ],
     ctaLabel: 'كلّمنا عن شغلك',
     badge: 'حلول مخصصة بالكامل',
+    value: 'نظام مفصّل على شغلك يوفر وقتك بشكل دائم.',
+    price: 'يبدأ من ٣٬٠٠٠ ر.س',
+    priceNote: 'السعر النهائي حسب نطاق المشروع',
+    duration: 'مفتوحة',
+    durationNote: 'نحددها بعد فهم المطلوب',
   },
 ];
 

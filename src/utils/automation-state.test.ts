@@ -28,6 +28,15 @@ test('TAMAM_PACKAGES includes the 3 exact package offerings', () => {
   assert.equal(TAMAM_PACKAGES[2].ctaLabel, 'كلّمنا عن شغلك');
 });
 
+test('every package shows a clear price, delivery time and value', () => {
+  for (const p of TAMAM_PACKAGES) {
+    assert.ok(p.price.length > 0 && p.duration.length > 0 && p.value.length > 0);
+  }
+  assert.equal(TAMAM_PACKAGES[0].duration, 'أسبوع');
+  assert.equal(TAMAM_PACKAGES[1].duration, '٥ أيام');
+  assert.equal(TAMAM_PACKAGES[2].duration, 'مفتوحة');
+});
+
 test('PAIN_POINTS contains the 3 exact requested cards', () => {
   assert.equal(PAIN_POINTS.length, 3);
   assert.equal(PAIN_POINTS[0].title, 'رسائل بلا توقف');

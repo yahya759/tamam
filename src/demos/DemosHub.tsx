@@ -1,11 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Check, Copy, ExternalLink, Link2, Scissors, Send, Stethoscope, UtensilsCrossed } from 'lucide-react';
+import { Building2, Check, Copy, ExternalLink, Link2, Scale, Scissors, Send, Stethoscope, UtensilsCrossed } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { WhatsAppIcon } from '../components/WhatsAppIcon';
 import { NICHES, NICHE_ORDER, type NicheId } from '../niches';
 import { normalizePhone, setNoIndex, waTo } from './utils';
 
-const ICONS: Record<string, LucideIcon> = { salon: Scissors, restaurant: UtensilsCrossed, dental: Stethoscope };
+const ICONS: Record<string, LucideIcon> = {
+  salon: Scissors,
+  restaurant: UtensilsCrossed,
+  dental: Stethoscope,
+  lawyer: Scale,
+  realestate: Building2,
+};
 const FRAME_W = 1280;
 const FRAME_H = 800;
 
@@ -118,7 +124,7 @@ export const DemosHub: React.FC = () => {
           </label>
         </section>
 
-        <section className="mt-8 grid gap-6 lg:grid-cols-3">
+        <section className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {NICHE_ORDER.map((id) => {
             const n = NICHES[id];
             const Icon = ICONS[id];
