@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Building2, Check, Copy, ExternalLink, Link2, Scale, Scissors, Send, Stethoscope, UtensilsCrossed } from 'lucide-react';
+import { Building2, Check, Copy, ExternalLink, Link2, Scale, Scissors, Send, ShoppingBag, Stethoscope, UtensilsCrossed } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { WhatsAppIcon } from '../components/WhatsAppIcon';
 import { NICHES, NICHE_ORDER, type NicheId } from '../niches';
@@ -11,6 +11,7 @@ const ICONS: Record<string, LucideIcon> = {
   dental: Stethoscope,
   lawyer: Scale,
   realestate: Building2,
+  store: ShoppingBag,
 };
 const FRAME_W = 1280;
 const FRAME_H = 800;
@@ -140,7 +141,13 @@ export const DemosHub: React.FC = () => {
                   </span>
                   <h2 className="font-heading text-lg font-bold">{n.label}</h2>
                 </div>
-                <p className="mt-2 flex-1 text-sm leading-7 text-slate-600">{n.hero.line1}</p>
+                <p className="mt-2 text-sm leading-7 text-slate-600">{n.hero.line1}</p>
+                {n.audience && (
+                  <p className="mt-2 rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-xs leading-6 text-amber-800">
+                    {n.audience}
+                  </p>
+                )}
+                <div className="flex-1" />
 
                 <div className="mt-4 flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2">
                   <Link2 className="h-4 w-4 shrink-0 text-slate-400" />
