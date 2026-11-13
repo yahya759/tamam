@@ -1,5 +1,8 @@
 import React from 'react';
-import { Database, CalendarClock, Cpu, Check, ArrowLeft, HelpCircle, Clock } from 'lucide-react';
+import {
+  Database, CalendarClock, Cpu, Check, ArrowLeft, HelpCircle, Clock,
+  PackageCheck, ShoppingCart, Truck, Receipt, Boxes,
+} from 'lucide-react';
 import { TAMAM_PACKAGES } from '../utils/automation-state';
 import { ScrollReveal } from './ScrollReveal';
 import { getNiche } from '../niches';
@@ -27,6 +30,36 @@ export const PackagesSection: React.FC<PackagesSectionProps> = ({
           icon: <CalendarClock className="w-5 h-5 text-blue-600 transition-transform duration-300 group-hover:scale-110" />,
           accentBg: 'bg-blue-50/80 border-blue-100 group-hover:border-blue-200',
           badgeColor: 'text-blue-700 bg-blue-50 border-blue-100/90',
+        };
+      case 'store-cod-confirmation':
+        return {
+          icon: <PackageCheck className="w-5 h-5 text-emerald-600 transition-transform duration-300 group-hover:scale-110" />,
+          accentBg: 'bg-emerald-50/80 border-emerald-100 group-hover:border-emerald-200',
+          badgeColor: 'text-emerald-700 bg-emerald-50 border-emerald-100/90',
+        };
+      case 'store-abandoned-cart':
+        return {
+          icon: <ShoppingCart className="w-5 h-5 text-orange-600 transition-transform duration-300 group-hover:scale-110" />,
+          accentBg: 'bg-orange-50/80 border-orange-100 group-hover:border-orange-200',
+          badgeColor: 'text-orange-700 bg-orange-50 border-orange-100/90',
+        };
+      case 'store-order-tracking':
+        return {
+          icon: <Truck className="w-5 h-5 text-sky-600 transition-transform duration-300 group-hover:scale-110" />,
+          accentBg: 'bg-sky-50/80 border-sky-100 group-hover:border-sky-200',
+          badgeColor: 'text-sky-700 bg-sky-50 border-sky-100/90',
+        };
+      case 'store-shipping-invoice':
+        return {
+          icon: <Receipt className="w-5 h-5 text-indigo-600 transition-transform duration-300 group-hover:scale-110" />,
+          accentBg: 'bg-indigo-50/80 border-indigo-100 group-hover:border-indigo-200',
+          badgeColor: 'text-indigo-700 bg-indigo-50 border-indigo-100/90',
+        };
+      case 'store-inventory-sync':
+        return {
+          icon: <Boxes className="w-5 h-5 text-teal-600 transition-transform duration-300 group-hover:scale-110" />,
+          accentBg: 'bg-teal-50/80 border-teal-100 group-hover:border-teal-200',
+          badgeColor: 'text-teal-700 bg-teal-50 border-teal-100/90',
         };
       case 'custom-automation':
       default:
@@ -61,8 +94,7 @@ export const PackagesSection: React.FC<PackagesSectionProps> = ({
 
       {/* 3 Packages Cards with Staggered Scroll & Hover Animations */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 w-full max-w-7xl mx-auto">
-        {TAMAM_PACKAGES.map((basePkg, idx) => {
-          const pkg = { ...basePkg, ...(niche.packages[basePkg.id] ?? {}) };
+        {(niche.packagesList ?? TAMAM_PACKAGES.map((basePkg) => ({ ...basePkg, ...(niche.packages[basePkg.id] ?? {}) }))).map((pkg, idx) => {
           const visual = getPackageVisual(pkg.id);
           return (
             <ScrollReveal key={pkg.id} delay={idx * 140} className="h-full">
