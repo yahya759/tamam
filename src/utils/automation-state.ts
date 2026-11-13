@@ -94,6 +94,8 @@ export interface PackageItem {
   name: string;
   promise: string;
   features: string[];
+  /** Overrides the default "ما تشمله الباقة:" label above the list. */
+  featuresTitle?: string;
   ctaLabel: string;
   badge?: string;
   /** What the client gets, in one line. */

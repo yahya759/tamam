@@ -3,7 +3,7 @@ import {
   Database, CalendarClock, Cpu, Check, ArrowLeft, HelpCircle, Clock,
   PackageCheck, ShoppingCart, Truck, Receipt, Boxes,
 } from 'lucide-react';
-import { TAMAM_PACKAGES } from '../utils/automation-state';
+import { TAMAM_PACKAGES, type PackageItem } from '../utils/automation-state';
 import { ScrollReveal } from './ScrollReveal';
 import { getNiche } from '../niches';
 
@@ -17,6 +17,9 @@ export const PackagesSection: React.FC<PackagesSectionProps> = ({
   onOpenConsultation,
 }) => {
   const niche = getNiche();
+  const packageList: PackageItem[] =
+    niche.packagesList ??
+    TAMAM_PACKAGES.map((basePkg) => ({ ...basePkg, ...(niche.packages[basePkg.id] ?? {}) }));
   const getPackageVisual = (id: string) => {
     switch (id) {
       case 'crm-inquiries':
@@ -84,17 +87,25 @@ export const PackagesSection: React.FC<PackagesSectionProps> = ({
             id="packages-title"
             className="text-3xl sm:text-4xl lg:text-5xl font-heading font-black text-slate-950 tracking-tight leading-[1.25] mb-4 sm:mb-5"
           >
-            حلول تناسب طريقة شغلك
+            {niche.packagesHeader?.title ?? 'حلول تناسب طريقة شغلك'}
           </h2>
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
-            ابدأ من أكثر مهمة تستهلك وقتك، واختر النظام المناسب لعملك.
+            {niche.packagesHeader?.sub ?? 'ابدأ من أكثر مهمة تستهلك وقتك، واختر النظام المناسب لعملك.'}
           </p>
         </div>
       </ScrollReveal>
 
       {/* 3 Packages Cards with Staggered Scroll & Hover Animations */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 w-full max-w-7xl mx-auto">
-        {(niche.packagesList ?? TAMAM_PACKAGES.map((basePkg) => ({ ...basePkg, ...(niche.packages[basePkg.id] ?? {}) }))).map((pkg, idx) => {
+      <div
+        className={`grid grid-cols-1 gap-6 sm:gap-8 w-full mx-auto ${
+          packageList.length === 1
+            ? 'max-w-2xl'
+            : packageList.length === 2
+              ? 'md:grid-cols-2 max-w-4xl'
+              : 'md:grid-cols-3 max-w-7xl'
+        }`}
+      >
+        {packageList.map((pkg, idx) => {
           const visual = getPackageVisual(pkg.id);
           return (
             <ScrollReveal key={pkg.id} delay={idx * 140} className="h-full">
@@ -148,7 +159,7 @@ export const PackagesSection: React.FC<PackagesSectionProps> = ({
                   {/* Features List */}
                   <div className="space-y-3 mb-8">
                     <span className="text-xs font-semibold text-slate-400 block mb-2">
-                      ما تشمله الباقة:
+                      {pkg.featuresTitle ?? 'ما تشمله الباقة:'}
                     </span>
                     {pkg.features.map((feature, fIdx) => (
                       <div key={fIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -179,6 +190,7 @@ export const PackagesSection: React.FC<PackagesSectionProps> = ({
       </div>
 
       {/* Closing Callout Below Packages */}
+      {packageList.length > 1 && (
       <ScrollReveal delay={200}>
         <div className="mt-14 sm:mt-18 text-center flex flex-col items-center">
           <div className="max-w-2xl mx-auto p-5 sm:p-6 rounded-3xl bg-indigo-50/70 border border-indigo-100/90 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -201,6 +213,7 @@ export const PackagesSection: React.FC<PackagesSectionProps> = ({
           </div>
         </div>
       </ScrollReveal>
+      )}
     </section>
   );
 };
