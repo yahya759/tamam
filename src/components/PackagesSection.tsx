@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Database, CalendarClock, Cpu, Check, ArrowLeft, HelpCircle, Clock,
-  PackageCheck, ShoppingCart, Truck, Receipt, Boxes,
+  PackageCheck, ShoppingCart, Truck, Receipt, Boxes, Banknote,
 } from 'lucide-react';
 import { TAMAM_PACKAGES, type PackageItem } from '../utils/automation-state';
 import { ScrollReveal } from './ScrollReveal';
@@ -63,6 +63,12 @@ export const PackagesSection: React.FC<PackagesSectionProps> = ({
           icon: <Boxes className="w-5 h-5 text-teal-600 transition-transform duration-300 group-hover:scale-110" />,
           accentBg: 'bg-teal-50/80 border-teal-100 group-hover:border-teal-200',
           badgeColor: 'text-teal-700 bg-teal-50 border-teal-100/90',
+        };
+      case 'finance-ar-automation':
+        return {
+          icon: <Banknote className="w-5 h-5 text-violet-600 transition-transform duration-300 group-hover:scale-110" />,
+          accentBg: 'bg-violet-50/80 border-violet-100 group-hover:border-violet-200',
+          badgeColor: 'text-violet-700 bg-violet-50 border-violet-100/90',
         };
       case 'custom-automation':
       default:

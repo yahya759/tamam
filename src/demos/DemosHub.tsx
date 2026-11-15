@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Building2, Check, Copy, ExternalLink, Link2, Scale, Scissors, Send, ShoppingBag, Stethoscope, UtensilsCrossed } from 'lucide-react';
+import { Banknote, Building2, Check, Copy, ExternalLink, Link2, Scale, Scissors, Send, ShoppingBag, Stethoscope, UtensilsCrossed } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { WhatsAppIcon } from '../components/WhatsAppIcon';
 import { NICHES, NICHE_ORDER, type NicheId } from '../niches';
@@ -12,6 +12,7 @@ const ICONS: Record<string, LucideIcon> = {
   lawyer: Scale,
   realestate: Building2,
   store: ShoppingBag,
+  finance: Banknote,
 };
 const FRAME_W = 1280;
 const FRAME_H = 800;
