@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X, Sparkles, ArrowLeft } from 'lucide-react';
+import { getNiche } from '../niches';
 
 interface NavbarProps {
   onOpenSolutions: () => void;
@@ -14,6 +15,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenPackages,
   onOpenInquiry,
 }) => {
+  const unbranded = !!getNiche().unbranded;
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -44,16 +46,20 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
         </nav>
 
-        {/* Centered Brand Logo */}
-        <div className="flex items-center gap-2.5">
-          <div className="flex flex-col text-right">
-            <div className="flex items-center gap-1.5">
-              <span className="font-heading text-xl font-bold tracking-tight text-slate-950">TAMAM</span>
-              <span className="text-slate-300 text-sm font-light">|</span>
-              <span className="font-heading text-lg font-bold text-indigo-950">تَمام</span>
+        {/* Centered Brand Logo (hidden while there is no company name) */}
+        {unbranded ? (
+          <div />
+        ) : (
+          <div className="flex items-center gap-2.5">
+            <div className="flex flex-col text-right">
+              <div className="flex items-center gap-1.5">
+                <span className="font-heading text-xl font-bold tracking-tight text-slate-950">TAMAM</span>
+                <span className="text-slate-300 text-sm font-light">|</span>
+                <span className="font-heading text-lg font-bold text-indigo-950">تَمام</span>
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         {/* Desktop Contact CTA Link */}
         <div className="hidden md:flex items-center">

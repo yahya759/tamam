@@ -112,7 +112,12 @@ export const PainPointsSection: React.FC<PainPointsSectionProps> = ({ onLearnMor
           <div className="inline-flex items-center gap-2.5 px-5 py-3 rounded-2xl bg-indigo-50/70 border border-indigo-100/90 shadow-xs text-sm sm:text-base text-slate-800 font-medium transition-transform hover:scale-105">
             <Sparkles className="w-4 h-4 text-indigo-600 shrink-0" />
             <span>
-              <strong className="text-indigo-950 font-bold font-heading">TAMAM</strong> {niche.pain.closing}
+              {!niche.unbranded && (
+                <>
+                  <strong className="text-indigo-950 font-bold font-heading">TAMAM</strong>{' '}
+                </>
+              )}
+              {niche.pain.closing}
             </span>
           </div>
         </div>

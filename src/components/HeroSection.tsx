@@ -19,9 +19,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenInquiry, onOpenS
             <span className="hero-rise block text-balance text-indigo-950" style={{ animationDelay: '80ms' }}>
               {niche.hero.line1}
             </span>
-            <span className="hero-rise block text-indigo-600" style={{ animationDelay: '320ms' }}>
-              ووقتك؟ تَمام.
-            </span>
+            {!niche.unbranded && (
+              <span className="hero-rise block text-indigo-600" style={{ animationDelay: '320ms' }}>
+                ووقتك؟ تَمام.
+              </span>
+            )}
           </h1>
 
           <p
@@ -49,7 +51,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenInquiry, onOpenS
               onClick={onOpenSolutions}
               className="group flex cursor-pointer items-center justify-center gap-1.5 rounded-lg px-3 py-2 text-base font-medium text-slate-700 underline decoration-slate-300 underline-offset-8 transition-colors hover:text-slate-950 hover:decoration-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
             >
-              <span>اكتشف حلول TAMAM</span>
+              <span>{niche.unbranded ? 'اكتشف الحلول' : 'اكتشف حلول TAMAM'}</span>
               <ArrowUpRight className="h-4 w-4 text-slate-400 group-hover:text-slate-900" />
             </button>
           </div>
@@ -64,6 +66,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenInquiry, onOpenS
             messages={niche.chat.messages}
             bookedTitle={niche.chat.bookedTitle}
             bookedSub={niche.chat.bookedSub}
+            agentTag={niche.unbranded ? 'رد تلقائي' : undefined}
           />
           <p className="mt-5 text-center text-xs text-slate-400">
             مثال توضيحي لمحادثة بعد الأتمتة

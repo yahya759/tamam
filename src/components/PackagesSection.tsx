@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Database, CalendarClock, Cpu, Check, ArrowLeft, HelpCircle, Clock,
-  PackageCheck, ShoppingCart, Truck, Receipt, Boxes, Banknote,
+  PackageCheck, ShoppingCart, Truck, Receipt, Boxes, Banknote, ShieldCheck,
 } from 'lucide-react';
 import { TAMAM_PACKAGES, type PackageItem } from '../utils/automation-state';
 import { ScrollReveal } from './ScrollReveal';
@@ -154,6 +154,17 @@ export const PackagesSection: React.FC<PackagesSectionProps> = ({
                       <span className="block mt-1 text-[11px] text-slate-500 leading-snug">{pkg.durationNote}</span>
                     </div>
                   </div>
+
+                  {/* Try before you pay */}
+                  {pkg.trial && (
+                    <div className="mb-5 flex items-start gap-3 rounded-2xl border border-emerald-200 bg-emerald-50/70 p-3.5">
+                      <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600" />
+                      <div>
+                        <span className="block text-sm font-bold text-emerald-800">{pkg.trial.title}</span>
+                        <span className="mt-0.5 block text-xs leading-relaxed text-emerald-800/90">{pkg.trial.text}</span>
+                      </div>
+                    </div>
+                  )}
 
                   {/* Value */}
                   <div className="mb-6 p-3.5 rounded-2xl bg-indigo-50/60 border border-indigo-100/80">

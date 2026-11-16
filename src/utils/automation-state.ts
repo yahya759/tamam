@@ -94,6 +94,8 @@ export interface PackageItem {
   name: string;
   promise: string;
   features: string[];
+  /** Optional "try before you pay" strip shown on the card. */
+  trial?: { title: string; text: string };
   /** Overrides the default "ما تشمله الباقة:" label above the list. */
   featuresTitle?: string;
   ctaLabel: string;

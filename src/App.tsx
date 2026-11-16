@@ -99,7 +99,7 @@ export default function App() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 border-t border-slate-200/60 pt-4 w-full">
           {/* Solutions Text Strip (Zero-Pill discipline: clean typographic metadata) */}
           <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 text-xs sm:text-sm text-slate-500 font-medium">
-            <span className="text-slate-400 font-normal">حلول تَمام الأساسية:</span>
+            <span className="text-slate-400 font-normal">{niche.unbranded ? 'الحلول الأساسية:' : 'حلول تَمام الأساسية:'}</span>
             <div className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 text-slate-700">
               {RIBBON_SOLUTIONS.map((solutionId, i) => (
                 <React.Fragment key={solutionId}>

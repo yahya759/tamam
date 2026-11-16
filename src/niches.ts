@@ -25,6 +25,8 @@ export interface NicheContent {
   id: NicheId;
   path: string;
   label: string;
+  /** Hide the TAMAM brand everywhere on this page (for when there is no company yet). */
+  unbranded?: boolean;
   /** Internal note for the links page: who to send this niche to. */
   audience?: string;
   meta: { title: string; description: string; ogImage: string };
@@ -782,10 +784,11 @@ export const NICHES: Record<NicheId, NicheContent> = {
     id: 'finance',
     path: '/finance',
     label: 'شركات B2B: تحصيل الفواتير',
+    unbranded: true,
     audience:
       'ابعته لشركات التوزيع والتوريد والجملة وخدمات B2B اللي تبيع بالآجل وعندها فواتير متكررة. أنسب لمن يستخدم Odoo، وما يحتاج يستبدل نظامه المحاسبي.',
     meta: {
-      title: 'TAMAM | تَمام — أتمتة متابعة الفواتير والتحصيل (Odoo + واتساب)',
+      title: 'أتمتة متابعة الفواتير والتحصيل (Odoo + واتساب)',
       description:
         'نربط Odoo بواتساب لمتابعة الفواتير المستحقة تلقائيًا: تذكيرات للعملاء، متابعة المتأخرات، وتقارير للإدارة — بدون استبدال نظامك المحاسبي.',
       ogImage: '/og-finance.png',
@@ -811,7 +814,7 @@ export const NICHES: Record<NicheId, NicheContent> = {
     pain: {
       title: 'الفواتير المستحقة… تاخذ وقت فريقك وتأخّر التحصيل',
       sub: 'متابعة العملاء بالاتصال والرسائل يدويًا، وفواتير تتأخر بدون ما أحد ينتبه، ووعود دفع تنسى — تفاصيل صغيرة تأخّر التحصيل وتضغط على السيولة.',
-      closing: 'تحوّل هذي الخطوات المتكررة إلى نظام يمشي مع شركتك.',
+      closing: 'نحوّل هذي الخطوات المتكررة إلى نظام يمشي مع شركتك.',
       items: {
         'endless-messages': {
           title: 'تذكير يدوي بكل فاتورة',
@@ -833,7 +836,7 @@ export const NICHES: Record<NicheId, NicheContent> = {
     packages: {},
     packagesHeader: {
       title: 'عرض واحد لتحصيل فواتيرك بدون متابعة يدوية',
-      sub: 'نربط النظام مع Odoo الموجود عندك، وما نطلب منك تستبدل نظامك المحاسبي.',
+      sub: 'نربط النظام مع Odoo الموجود عندك بدون ما تستبدل نظامك المحاسبي. وتجرّبه ٥ أيام قبل ما تدفع.',
     },
     packagesList: [
       {
@@ -854,10 +857,14 @@ export const NICHES: Record<NicheId, NicheContent> = {
         ],
         ctaLabel: 'كلّمنا عن شغلك',
         value: 'متابعة تحصيل مستمرة بدون جهد يدوي من فريقك.',
-        price: '٥٠٠ دولار',
+        price: '٢٠٠ دولار',
         priceNote: 'رسوم إعداد لمرة وحدة، غير شامل رسوم رسائل واتساب',
-        duration: '٣ أسابيع',
+        duration: '٧ أيام',
         durationNote: 'من الاتفاق لين التشغيل',
+        trial: {
+          title: 'جرّبه قبل ما تدفع',
+          text: 'ما تدفع إلا بعد ٥ أيام تجربة. وإذا ما عجبك العمل، ما تدفع.',
+        },
       },
     ],
     work: {
@@ -884,9 +891,9 @@ export const NICHES: Record<NicheId, NicheContent> = {
       title: 'جاهز تخلّي تحصيل فواتيرك يمشي لحاله؟',
       sub: 'قل لنا كيف تتابع الفواتير المستحقة اليوم، ونساعدك تكتشف وين ممكن الأتمتة توفر وقت فريقك.',
     },
-    waMessage: 'هلا تَمام، عندي شركة وأبغى أكلمكم عن أتمتة متابعة الفواتير والتحصيل.',
+    waMessage: 'هلا، عندي شركة وأبغى أكلمكم عن أتمتة متابعة الفواتير والتحصيل.',
     outreach:
-      'هلا {contact}، أنا يحيى من تَمام. جهّزت لكم صفحة توضح كيف نربط Odoo بواتساب ونخلّي متابعة الفواتير المستحقة والتحصيل تمشي تلقائيًا بدون ما تستبدلون نظامكم المحاسبي. تفضلوا الرابط: {url}',
+      'هلا {contact}، أنا يحيى. جهّزت لكم صفحة توضح كيف نربط Odoo بواتساب ونخلّي متابعة الفواتير المستحقة والتحصيل تمشي تلقائيًا بدون ما تستبدلون نظامكم المحاسبي. تفضلوا الرابط: {url}',
   },
 };
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { getNiche } from '../niches';
 import { X, CheckCircle2, ArrowLeft, Layers, ShieldCheck, Sparkles } from 'lucide-react';
 
 interface InfoModalProps {
@@ -29,7 +30,9 @@ export const InfoModal: React.FC<InfoModalProps> = ({
       >
         <div className="flex items-center justify-between p-6 pb-4 border-b border-slate-100">
           <h2 id="info-modal-title" className="text-xl sm:text-2xl font-heading font-bold text-slate-950">
-            {type === 'how-it-works' ? 'طريقة العمل مع تَمام' : 'باقات وحلول تَمام'}
+            {type === 'how-it-works'
+              ? (getNiche().unbranded ? 'طريقة العمل' : 'طريقة العمل مع تَمام')
+              : (getNiche().unbranded ? 'الباقات والحلول' : 'باقات وحلول تَمام')}
           </h2>
           <button
             type="button"

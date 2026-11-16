@@ -21,6 +21,7 @@ export const DarkFooter: React.FC<DarkFooterProps> = ({
   onOpenPrivacy,
 }) => {
   const currentYear = new Date().getFullYear();
+  const unbranded = !!getNiche().unbranded;
 
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -40,16 +41,18 @@ export const DarkFooter: React.FC<DarkFooterProps> = ({
           {/* Brand Info & Textual Slogan */}
           <div className="md:col-span-6 flex flex-col items-start">
             {/* Logo Emblem & Wordmark */}
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-blue-500 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-indigo-500/20">
-                <span>ت</span>
+            {!unbranded && (
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-blue-500 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-indigo-500/20">
+                  <span>ت</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="font-heading font-black text-xl text-white tracking-tight">TAMAM</span>
+                  <span className="text-slate-600">|</span>
+                  <span className="font-heading font-bold text-lg text-slate-300">تَمام</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="font-heading font-black text-xl text-white tracking-tight">TAMAM</span>
-                <span className="text-slate-600">|</span>
-                <span className="font-heading font-bold text-lg text-slate-300">تَمام</span>
-              </div>
-            </div>
+            )}
 
             {/* Exact Requested Brand Textual Slogan */}
             <p className="font-heading font-bold text-lg sm:text-xl text-white mb-3">
@@ -146,7 +149,7 @@ export const DarkFooter: React.FC<DarkFooterProps> = ({
         {/* Bottom Bar: Copyright & Back to Top */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <div className="flex items-center gap-2 text-center sm:text-right">
-            <span>© {currentYear} TAMAM | تَمام — أتمتة ذكية للشركات. جميع الحقوق محفوظة.</span>
+            {!unbranded && <span>© {currentYear} TAMAM | تَمام — أتمتة ذكية للشركات. جميع الحقوق محفوظة.</span>}
           </div>
 
           <div className="flex items-center gap-5">

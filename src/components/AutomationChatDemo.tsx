@@ -51,6 +51,8 @@ export interface AutomationChatDemoProps {
   autoScale?: boolean;
   bookedTitle?: string;
   bookedSub?: string;
+  /** Small label above the first automated reply. */
+  agentTag?: string;
 }
 
 export const AutomationChatDemo: React.FC<AutomationChatDemoProps> = ({
@@ -61,6 +63,7 @@ export const AutomationChatDemo: React.FC<AutomationChatDemoProps> = ({
   autoScale = true,
   bookedTitle = 'تم حجز الموعد',
   bookedSub = 'وفريقك ما تدخّل',
+  agentTag = 'رد تلقائي من TAMAM',
 }) => {
   const scale = usePhoneScale(autoScale);
   const [visible, setVisible] = useState(0);
@@ -160,7 +163,7 @@ export const AutomationChatDemo: React.FC<AutomationChatDemoProps> = ({
         dir="ltr"
         className="relative h-[640px] rounded-[3.1rem] bg-gradient-to-b from-[#5b5b61] via-[#232327] to-[#4a4a50] p-[2.5px] shadow-[0_60px_100px_-30px_rgba(30,27,75,0.7),0_30px_60px_-20px_rgba(0,0,0,0.35)]"
         role="img"
-        aria-label={`مثال على محادثة واتساب يردّ فيها وكيل تمام تلقائيًا على عميل ${contactName}`}
+        aria-label={`مثال على محادثة واتساب يردّ فيها وكيل ذكي تلقائيًا على عميل ${contactName}`}
       >
         {/* Side buttons */}
         <span className="absolute -left-[3px] top-[104px] h-7 w-[3px] rounded-l-sm bg-[#3a3a40]" aria-hidden="true" />
@@ -227,7 +230,7 @@ export const AutomationChatDemo: React.FC<AutomationChatDemoProps> = ({
                     {isFirstAgent && (
                       <p className="mb-0.5 flex items-center gap-1 text-[10.5px] font-semibold text-indigo-300">
                         <Zap className="h-3 w-3" />
-                        رد تلقائي من TAMAM
+                        {agentTag}
                       </p>
                     )}
                     {m.text}

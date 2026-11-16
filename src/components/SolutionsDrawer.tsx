@@ -1,4 +1,5 @@
 import React from 'react';
+import { getNiche } from '../niches';
 import { X, MessageSquareText, TrendingUp, CalendarCheck, Cpu, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { TAMAM_SOLUTIONS } from '../utils/automation-state';
 
@@ -47,7 +48,7 @@ export const SolutionsDrawer: React.FC<SolutionsDrawerProps> = ({
               حلول أتمتة الأعمال
             </div>
             <h2 id="solutions-title" className="text-xl sm:text-2xl font-heading font-bold text-slate-950">
-              حلول TAMAM بالذكاء الاصطناعي
+              {getNiche().unbranded ? 'حلول بالذكاء الاصطناعي' : 'حلول TAMAM بالذكاء الاصطناعي'}
             </h2>
           </div>
           <button
