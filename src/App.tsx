@@ -8,6 +8,7 @@ import { getNiche } from './niches';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { WorkSection } from './components/WorkSection';
+import { FreeTestSection } from './components/FreeTestSection';
 import { PrivacyModal } from './components/PrivacyModal';
 import { WhatsAppFab } from './components/WhatsAppFab';
 import { InquiryModal } from './components/InquiryModal';
@@ -119,6 +120,9 @@ export default function App() {
           </div>
         </div>
       </div>
+
+      {/* Free test (only on niches that sell through it) */}
+      <FreeTestSection onOpenInquiry={() => setIsInquiryOpen(true)} />
 
       {/* 4. Section 1: Repetitive Tasks & Pain Points */}
       <PainPointsSection onLearnMore={() => setIsSolutionsOpen(true)} />

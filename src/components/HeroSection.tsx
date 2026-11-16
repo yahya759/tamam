@@ -42,16 +42,22 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenInquiry, onOpenS
               onClick={onOpenInquiry}
               className="group flex cursor-pointer items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-[#FF5722] via-[#F4511E] to-[#E64A19] px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-orange-500/25 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-orange-500/40 focus:outline-none focus-visible:ring-4 focus-visible:ring-orange-400/50 active:translate-y-0"
             >
-              <span>كلّمنا عن شغلك</span>
+              <span>{niche.primaryCta ?? 'كلّمنا عن شغلك'}</span>
               <ArrowLeft className="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-1" />
             </button>
 
             <button
               type="button"
-              onClick={onOpenSolutions}
+              onClick={() => {
+                if (niche.heroSecondary) {
+                  document.getElementById(niche.heroSecondary.target)?.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                  onOpenSolutions();
+                }
+              }}
               className="group flex cursor-pointer items-center justify-center gap-1.5 rounded-lg px-3 py-2 text-base font-medium text-slate-700 underline decoration-slate-300 underline-offset-8 transition-colors hover:text-slate-950 hover:decoration-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
             >
-              <span>{niche.unbranded ? 'اكتشف الحلول' : 'اكتشف حلول TAMAM'}</span>
+              <span>{niche.heroSecondary?.label ?? (niche.unbranded ? 'اكتشف الحلول' : 'اكتشف حلول TAMAM')}</span>
               <ArrowUpRight className="h-4 w-4 text-slate-400 group-hover:text-slate-900" />
             </button>
           </div>

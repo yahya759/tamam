@@ -56,7 +56,7 @@ export const ClosingCtaSection: React.FC<ClosingCtaSectionProps> = ({ onOpenInqu
                 onClick={onOpenInquiry}
                 className="w-full sm:w-auto px-8 py-4 text-base font-semibold text-white bg-gradient-to-r from-[#FF5722] via-[#F4511E] to-[#E64A19] hover:from-[#F4511E] hover:to-[#D84315] rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-orange-400/50 flex items-center justify-center gap-2.5 group/btn"
               >
-                <span>كلّمنا عن شغلك</span>
+                <span>{niche.primaryCta ?? 'كلّمنا عن شغلك'}</span>
                 <ArrowLeft className="w-4 h-4 transition-transform duration-200 group-hover/btn:-translate-x-1" />
               </button>
             </div>
